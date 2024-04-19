@@ -46,15 +46,51 @@ public class CarModel {
         return numPlate;
     }
 
-    private double calculatePrice(String carBrand, int year, double tankCapacity, double isDiesel){
-        //rumusnya gimana bang
-        return 0.0;
+    private double calculatePrice(String carBrand, int year, double tankCapacity, boolean isDiesel){
+        // Misalnya, kita akan menghitung harga berdasarkan tahun dan kapasitas tangki
+    double basePrice = 100; // Harga dasar
+    double yearMultiplier = 0.95; // Pengurang harga setiap tahun
+    double tankCapacityMultiplier = 0.05; // Penambahan harga setiap liter kapasitas tangki
+
+    // Hitung harga dasar berdasarkan merek mobil
+    if (carBrand.equals("Toyota")) {
+        basePrice += 50;
+    } else if (carBrand.equals("Honda")) {
+        basePrice += 40;
+    } else {
+        basePrice += 30;
     }
 
-    public double getPrice(int day){
-        //rumusnya gimana bang
-        return 0.0;
+    // Hitung harga berdasarkan tahun
+    int currentYear = 2024; // Tahun sekarang 
+    int age = currentYear - year;
+    basePrice *= Math.pow(yearMultiplier, age);
+
+    // Hitung harga berdasarkan kapasitas tangki
+    basePrice += tankCapacity * tankCapacityMultiplier;
+
+    // Jika mobil menggunakan diesel, tambahkan biaya tambahan
+    if (isDiesel) {
+        basePrice += 20;
     }
+        return basePrice;
+    }
+
+    public double getPrice(int day) {
+        double dailyRate = 50; // Tarif harian 
+        double discountRate = 0.9; // Tarif diskon untuk sewa lebih dari 7 hari 
+        
+        // Hitung harga total berdasarkan jumlah hari
+        double totalPrice = dailyRate * day;
+    
+        // Berikan diskon jika menyewa lebih dari 7 hari
+        if (day > 7) {
+            totalPrice *= discountRate;
+        }
+    
+        return totalPrice;
+    }
+    
 
     public void displayCar(){
         System.out.println("Car Information:");
