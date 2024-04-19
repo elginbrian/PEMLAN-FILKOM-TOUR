@@ -39,4 +39,8 @@ public class EmployeeModel {
     public double getSalary(){
         return salary;
     }
+
+    public void displayEmployee(){
+        
+    }
 }

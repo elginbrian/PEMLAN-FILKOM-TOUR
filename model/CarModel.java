@@ -42,6 +42,10 @@ public class CarModel {
         return isRented;
     }
 
+    public String getNumPlate(){
+        return numPlate;
+    }
+
     private double calculatePrice(String carBrand, int year, double tankCapacity, double isDiesel){
         //rumusnya gimana bang
         return 0.0;

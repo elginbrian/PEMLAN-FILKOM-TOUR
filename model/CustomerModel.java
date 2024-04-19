@@ -18,6 +18,10 @@ public class CustomerModel {
         this.gender=gender;
     }
 
+    public String getCustomerId(){
+        return customerID;
+    }
+
     public void updateCustomerInfo(String name, String phoneNum, String address, String gender){
         this.name=name;
         this.phoneNum=phoneNum;
