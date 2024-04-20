@@ -1,4 +1,4 @@
-import controller.CrudController;
+import controller.Crud;
 import controller.TransactionController;
 import model.CarModel;
 import model.EmployeeModel;
@@ -6,7 +6,7 @@ import model.EmployeeModel;
 import java.util.*;
 
 public class RentMenu {
-    public static void DisplayRentMenu(String[] args, TransactionController transaction, CrudController crud) {
+    public static void DisplayRentMenu(String[] args, TransactionController transaction, Crud crud) {
         if(crud.userState == "customer"){
             Scanner input = new Scanner(System.in);
             System.out.println("\n=========================================");

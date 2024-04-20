@@ -4,7 +4,7 @@ import model.CarModel;
 import model.EmployeeModel;
 import model.CustomerModel;;
 
-public class CrudController extends FilkomTourData {
+public class Crud extends FilkomTourData {
 
     public void createCar(CarModel newCar){
         if(userState.equals("employee")){
@@ -60,15 +60,24 @@ public class CrudController extends FilkomTourData {
         }
     }
 
-    public void deleteCar(String numPlate){
-        if(userState.equals("employee")){
-            CarModel[] newCarList = new CarModel[this.carList.length + 1];
-            for(int i=0; i<newCarList.length; i++){
-                if(this.carList[i].getNumPlate().equals(numPlate)){
-                    continue;
+    public void deleteCar(String numPlate) {
+        if (userState.equals("employee")) {
+            int newSize = 0;
+            for (CarModel car : this.carList) {
+                if (!car.getNumPlate().equals(numPlate)) {
+                    newSize++;
                 }
-                newCarList[i] = this.carList[i];
             }
+            
+            CarModel[] newCarList = new CarModel[newSize];
+            int index = 0;
+            for (CarModel car : this.carList) {
+                if (!car.getNumPlate().equals(numPlate)) {
+                    newCarList[index] = car;
+                    index++;
+                }
+            }
+            
             this.carList = newCarList;
         }
     }
@@ -119,16 +128,26 @@ public class CrudController extends FilkomTourData {
         }
     }
 
-    public void deleteCustomer(String customerId){
-        CustomerModel[] newCustomerList = new CustomerModel[this.customerList.length + 1];
-        for(int i=0; i<newCustomerList.length; i++){
-            if(this.customerList[i].getCustomerId().equals(customerId)){
-                continue;
+    public void deleteCustomer(String customerId) {
+        int newSize = 0;
+        for (CustomerModel customer : this.customerList) {
+            if (!customer.getCustomerId().equals(customerId)) {
+                newSize++;
             }
-            newCustomerList[i] = this.customerList[i];
         }
-        this.customerList = newCustomerList;    
+    
+        CustomerModel[] newCustomerList = new CustomerModel[newSize];
+        int index = 0;
+        for (CustomerModel customer : this.customerList) {
+            if (!customer.getCustomerId().equals(customerId)) {
+                newCustomerList[index] = customer;
+                index++;
+            }
+        }
+    
+        this.customerList = newCustomerList;
     }
+    
 
     public void createEmployee(EmployeeModel newEmployee){
         if(userState.equals("employee")){
@@ -182,23 +201,25 @@ public class CrudController extends FilkomTourData {
         }
     }    
 
-    public void deleteEmployee(String employeeId){
-        if(userState.equals("employee")){
-            EmployeeModel[] newEmployeeList = new EmployeeModel[this.employeeList.length + 1];
-            for(int i=0; i<newEmployeeList.length; i++){
-                if(this.employeeList[i].getEmployeeId().equals(employeeId)){
-                    continue;
+    public void deleteEmployee(String employeeId) {
+        if (userState.equals("employee")) {
+            int newSize = 0;
+            for (EmployeeModel employee : this.employeeList) {
+                if (!employee.getEmployeeId().equals(employeeId)) {
+                    newSize++;
                 }
-                newEmployeeList[i] = this.employeeList[i];
             }
+    
+            EmployeeModel[] newEmployeeList = new EmployeeModel[newSize];
+            int index = 0;
+            for (EmployeeModel employee : this.employeeList) {
+                if (!employee.getEmployeeId().equals(employeeId)) {
+                    newEmployeeList[index] = employee;
+                    index++;
+                }
+            }
+    
             this.employeeList = newEmployeeList;
-        }
-    }
-
-    @Override
-    public void displayCustomerList(){
-        if(userState.equals("employee")){
-            super.displayCustomerList();
         }
     }
 }

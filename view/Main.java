@@ -1,12 +1,12 @@
 //package view;
 import java.util.*;
-import controller.CrudController;
+import controller.Crud;
 import controller.TransactionController;
 
 public class Main{
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        CrudController crud = new CrudController();
+        Crud crud = new Crud();
         TransactionController transaction = new TransactionController();
         boolean continueLoop = true;
 
@@ -35,7 +35,7 @@ public class Main{
             System.out.print("\nMasukkan pilihan anda: ");
             int role = input.nextInt();
 
-            switch (role) {
+            switch(role) {
                 case 1:
                     crud.userState = "employee";
                     break;
@@ -86,7 +86,7 @@ public class Main{
                     System.out.println("=========================================");
     
                     System.out.println("Apa keperluan anda?");
-                    System.out.println("1. Profil Akun Customer");
+                    System.out.println("1. Akses Profil Akun Customer");
                     System.out.println("2. Melihat List Mobil");
                     System.out.println("3. Melihat List Karyawan");
                     System.out.println("4. Rental Mobil");

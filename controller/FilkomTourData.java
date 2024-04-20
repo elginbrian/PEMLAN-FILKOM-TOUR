@@ -6,7 +6,7 @@ import model.CustomerModel;
 import java.util.*;
 
 public class FilkomTourData {
-    public static String userState = "customer";
+    public static  String userState = "customer";
     public static CustomerModel currentCustomer = new CustomerModel("N/A", "N/A", "N/A", 0, "N/A", "N/A");
 
     protected static CarModel[] carList = {
