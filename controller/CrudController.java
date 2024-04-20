@@ -5,11 +5,7 @@ import model.EmployeeModel;
 import model.CustomerModel;;
 
 public class CrudController extends FilkomTourData {
-    private String userState = "customer";
-    
-    public void setUserState(String userState){
-        this.userState = userState;
-    }
+    public String userState = "customer";
 
     public void createCar(CarModel newCar){
         if(userState.equals("employee")){

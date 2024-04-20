@@ -45,6 +45,15 @@ public class EmployeeModel {
     }
 
     public void displayEmployee(){
-        
+        System.out.println("employeeID : "+employeeID);
+        System.out.println("name       : "+name);
+        System.out.println("address    : "+address);
+        System.out.println("eMail      : "+eMail);
+        System.out.println("phoneNum   : "+phoneNum);
+        System.out.println("gender     : "+gender);
+        System.out.println("position   : "+position);
+        System.out.println("salary     : "+salary);
+        System.out.println("rating     : "+rating);
+        System.out.println("------------------------------------------");
     }
 }

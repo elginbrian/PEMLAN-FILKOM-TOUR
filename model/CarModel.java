@@ -93,15 +93,15 @@ public class CarModel {
     
 
     public void displayCar(){
-        System.out.println("Car Information:");
-        System.out.println("Number Plate: " + numPlate);
-        System.out.println("Brand: " + carBrand);
-        System.out.println("Color: " + carColor);
-        System.out.println("Year: " + year);
-        System.out.println("Tank Capacity: " + tankCapacity);
-        System.out.println("Rating: " + rating);
-        System.out.println("Fuel Type: " + (isDiesel ? "Diesel" : "Gasoline"));
-        System.out.println("Rented Status: " + (isRented ? "Rented" : "Available"));
+        System.out.println("Number Plate  : " + numPlate);
+        System.out.println("Brand         : " + carBrand);
+        System.out.println("Color         : " + carColor);
+        System.out.println("Year          : " + year);
+        System.out.println("Tank Capacity : " + tankCapacity);
+        System.out.println("Rating        : " + rating);
+        System.out.println("Fuel Type     : " + (isDiesel ? "Diesel" : "Gasoline"));
+        System.out.println("Rented Status : " + (isRented ? "Rented" : "Available"));
+        System.out.println("------------------------------------------");
     }
 }
 

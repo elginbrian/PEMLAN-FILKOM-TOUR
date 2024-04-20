@@ -52,12 +52,13 @@ public class CustomerModel {
     }
 
     public void displayCustomer(){
-        System.out.println("Customer ID: " + customerID);
-        System.out.println("Name: " + name);
-        System.out.println("Phone Number: " + phoneNum);
-        System.out.println("Age: " + age);
-        System.out.println("Address: " + address);
-        System.out.println("Gender: " + gender);
-        System.out.println("Balance: " + balance);
+        System.out.println("Customer ID  : " + customerID);
+        System.out.println("Name         : " + name);
+        System.out.println("Phone Number : " + phoneNum);
+        System.out.println("Age          : " + age);
+        System.out.println("Address      : " + address);
+        System.out.println("Gender       : " + gender);
+        System.out.println("Balance      : " + balance);
+        System.out.println("------------------------------------------");
     }
 }
