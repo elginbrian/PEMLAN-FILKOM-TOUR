@@ -5,9 +5,10 @@ import java.util.*;
 public class CarMenu {
     public static void DisplayCarMenu(String[] args, CrudController crud) {
         Scanner input = new Scanner(System.in);
+        boolean continueLoop = true;
 
         if(crud.userState == "employee"){
-            while(true){
+            while(continueLoop){
                 System.out.println("\n=========================================");
                 System.out.println("DATA MOBIL");
                 System.out.println("==========================================");
@@ -66,6 +67,7 @@ public class CarMenu {
                         crud.deleteCar(numPlate);
                         break;
                     case 5:
+                        continueLoop = false;
                         break;
                 }
             }

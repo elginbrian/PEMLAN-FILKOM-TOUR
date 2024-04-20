@@ -5,10 +5,12 @@ import model.EmployeeModel;
 public class EmployeeMenu {
     public static void DisplayEmployeeMenu(String[] args, CrudController crud) {
         Scanner input = new Scanner(System.in);
-        while(true){
+        boolean continueLoop = true;
+
+        while(continueLoop) {
             System.out.println("\n=========================================");
             System.out.println("DATA KARYAWAN");
-            System.out.println("==========================================");
+            System.out.println("=========================================");
             crud.displayEmployeeList();
 
             System.out.println("\nPilih tindakan yang ingin anda lakukan!");
@@ -23,8 +25,7 @@ public class EmployeeMenu {
 
             switch (option) {
                 case 1:
-                    System.out.println("Masukkan employee id  : ");
-                    String employeeID = input.nextLine();
+                    String employeeID = UUID.randomUUID().toString().substring(0,8);
                     System.out.println("Masukkan name         : ");
                     String name       = input.nextLine();
                     System.out.println("Masukkan address      : ");
@@ -77,7 +78,7 @@ public class EmployeeMenu {
                     break;
 
                 case 5:
-                    
+                    continueLoop = false;
                     break;
             }
         }

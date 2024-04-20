@@ -5,9 +5,10 @@ import model.CustomerModel;
 public class CustomerMenu {
     public static void DisplayCustomerMenu(String[] args, CrudController crud) {
         Scanner input = new Scanner(System.in);
+        boolean continueLoop = true;
         
         if(crud.userState == "employee"){
-            while(true){
+            while(continueLoop){
                 System.out.println("\n=========================================");
                 System.out.println("DATA CUSTOMER");
                 System.out.println("=========================================");
@@ -25,8 +26,7 @@ public class CustomerMenu {
     
                 switch (option) {
                     case 1:
-                        System.out.print("Masukkan customer id  : ");
-                        String customerID = input.nextLine();
+                        String customerID = UUID.randomUUID().toString().substring(0,8);
                         System.out.print("Masukkan name         : ");
                         String name       = input.nextLine();
                         System.out.print("Masukkan phone number : ");
@@ -72,7 +72,7 @@ public class CustomerMenu {
                         break;
     
                     case 5:
-                        
+                        continueLoop = false;
                         break;
                 }
             }
@@ -80,7 +80,29 @@ public class CustomerMenu {
             System.out.println("\n=========================================");
             System.out.println("DATA CUSTOMER");
             System.out.println("=========================================");
-            crud.displayCustomerList();
+            System.out.println("Current Customer");
+            crud.readCustomer(crud.currentCustomer.getCustomerId());
+
+            System.out.print("Ingin membuat akun baru? (y/n): ");
+            String confirm = input.nextLine();
+            if(confirm.equalsIgnoreCase("y")){
+                System.out.println("\n=========================================");
+                String customerID = UUID.randomUUID().toString().substring(0,8);
+                System.out.print("Masukkan name         : ");
+                String name       = input.nextLine();
+                System.out.print("Masukkan phone number : ");
+                String phoneNum   = input.nextLine();
+                System.out.print("Masukkan age          : ");
+                int age           = input.nextInt();
+                input.nextLine();
+                System.out.print("Masukkan address      : ");
+                String address    = input.nextLine();
+                System.out.print("Masukkan gender       : ");
+                String gender     = input.nextLine();
+        
+                CustomerModel newCustomer = new CustomerModel(customerID, name, phoneNum, age, address, gender);
+                crud.createCustomer(newCustomer);
+            }
         }
     }
 }

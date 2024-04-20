@@ -6,6 +6,9 @@ import model.CustomerModel;
 import java.util.*;
 
 public class FilkomTourData {
+    public static String userState = "customer";
+    public static CustomerModel currentCustomer = new CustomerModel("N/A", "N/A", "N/A", 0, "N/A", "N/A");
+
     protected static CarModel[] carList = {
         new CarModel("N 199 X", "Toyota Avanza", "Black", 2019, 100),
         new CarModel("B 15 UL", "Honda Jazz", "Red", 2020, 80),
@@ -14,7 +17,7 @@ public class FilkomTourData {
     };
     protected static EmployeeModel[] employeeList = {
         new EmployeeModel(
-            UUID.randomUUID().toString(), 
+            UUID.randomUUID().toString().substring(0,8), 
             "Budi Hariadi", 
             "Jl. Mawar Blok Z", 
             "budihariadi@gmail.com", 
@@ -24,7 +27,7 @@ public class FilkomTourData {
             8000000.0
         ),
         new EmployeeModel(
-            UUID.randomUUID().toString(), 
+            UUID.randomUUID().toString().substring(0,8), 
             "Bambang Herlambang", 
             "Jl. Dahlia Blok C", 
             "bambangherlambang@gmail.com", 
@@ -34,7 +37,7 @@ public class FilkomTourData {
             5000000.0
         ),
         new EmployeeModel(
-            UUID.randomUUID().toString(),
+            UUID.randomUUID().toString().substring(0,8),
             "Siti Aminah", 
             "Jl. Bojongsari Blok E", 
             "sitiaminah123@gmail.com",  
