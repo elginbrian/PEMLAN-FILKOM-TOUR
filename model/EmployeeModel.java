@@ -36,8 +36,8 @@ public class EmployeeModel {
         this.rating=rating;
     }
 
-    public double getSalary(){
-        return salary;
+    public double getFee(int day){
+        return Math.round((salary / 90) * day);
     }
 
     public String getEmployeeId(){

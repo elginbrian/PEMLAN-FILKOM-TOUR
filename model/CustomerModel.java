@@ -38,16 +38,19 @@ public class CustomerModel {
         }
     }
     
-    public void spendBalance(double price){
+    public boolean spendBalance(double price){
         if (price > 0) {
             if (balance >= price) {
                 balance -= price;
                 System.out.println("Spent " + price + ". Remaining balance: " + balance);
+                return true;
             } else {
                 System.out.println("Insufficient balance.");
+                return false;
             }
         } else {
             System.out.println("Invalid amount for spending.");
+            return false;
         }
     }
 

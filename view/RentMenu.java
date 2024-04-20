@@ -18,9 +18,11 @@ public class RentMenu {
             } else {
                 System.out.println("Mobil yang tersedia: ");
                 transaction.displayCarList();
+                
+                
                 System.out.print("\nMasukkan plat nomor mobil yang ingin anda \nsewa: ");
-    
                 String numPlate = input.nextLine();
+                
                 CarModel selectedCar = crud.readCar(numPlate);
         
                 EmployeeModel employeeNull = new EmployeeModel("N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", 0.0);
@@ -34,8 +36,20 @@ public class RentMenu {
         
                 System.out.print("Masukkan jumlah hari anda menyewa: ");
                 int day = input.nextInt();
-        
-                transaction.rentCar(selectedCar, selectedEmployee, day);
+                input.nextLine();
+
+                System.out.println("\n=========================================");
+                System.out.println("BIAYA");
+                System.out.println("=========================================");
+                System.out.println("Biaya Mobil : Rp." + selectedCar.getPrice(day));
+                System.out.println("Biaya Sopir : Rp." + selectedEmployee.getFee(day));
+                System.out.println("Total Biaya : Rp." + (selectedCar.getPrice(day) + selectedEmployee.getFee(day)));
+                System.out.println("=========================================");
+                System.out.print("Ingin melanjutkan? (y/n) : ");
+                String confirm = input.nextLine();
+                if(confirm.equalsIgnoreCase("y")){
+                    transaction.rentCar(selectedCar, selectedEmployee, day);
+                }
             }
             
         } else {

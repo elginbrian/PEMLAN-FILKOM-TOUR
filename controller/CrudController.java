@@ -25,7 +25,8 @@ public class CrudController extends FilkomTourData {
         CarModel car = null;
 
         for(int i = 0; i < this.carList.length; i++){
-            if(this.carList[i].getNumPlate() == numPlate){
+            if(this.carList[i].getNumPlate().equals(numPlate)){
+                System.out.println("\n------------------------------------------");
                 this.carList[i].displayCar();
                 car = this.carList[i];
                 found = true;
@@ -48,7 +49,7 @@ public class CrudController extends FilkomTourData {
         if(userState.equals("employee")){
             boolean found = false;
             for(int i = 0; i < this.carList.length; i++){
-                if(this.carList[i].getNumPlate() == numPlate){
+                if(this.carList[i].getNumPlate().equals(numPlate)){
                     this.carList[i].updateCarInfo(numPlate, carBrand, carColor, year, tankCapacity);
                     found = true;
                 }
@@ -63,7 +64,7 @@ public class CrudController extends FilkomTourData {
         if(userState.equals("employee")){
             CarModel[] newCarList = new CarModel[this.carList.length + 1];
             for(int i=0; i<newCarList.length; i++){
-                if(this.carList[i].getNumPlate() == numPlate){
+                if(this.carList[i].getNumPlate().equals(numPlate)){
                     continue;
                 }
                 newCarList[i] = this.carList[i];
@@ -88,7 +89,8 @@ public class CrudController extends FilkomTourData {
     public void readCustomer(String customerId){
         boolean found = false;
         for(int i = 0; i < customerList.length; i++){
-            if(customerList[i].getCustomerId() == customerId){
+            if(customerList[i].getCustomerId().equals(customerId)){
+                System.out.println("\n------------------------------------------");
                 customerList[i].displayCustomer();
                 found = true;
             }
@@ -107,7 +109,7 @@ public class CrudController extends FilkomTourData {
     ){
         boolean found = false;
         for(int i = 0; i < customerList.length; i++){
-            if(customerList[i].getCustomerId() == customerId){
+            if(customerList[i].getCustomerId().equals(customerId)){
                 customerList[i].updateCustomerInfo(name, phoneNum, address, gender);
                 found = true;
             }
@@ -120,7 +122,7 @@ public class CrudController extends FilkomTourData {
     public void deleteCustomer(String customerId){
         CustomerModel[] newCustomerList = new CustomerModel[this.customerList.length + 1];
         for(int i=0; i<newCustomerList.length; i++){
-            if(this.customerList[i].getCustomerId() == customerId){
+            if(this.customerList[i].getCustomerId().equals(customerId)){
                 continue;
             }
             newCustomerList[i] = this.customerList[i];
@@ -143,7 +145,8 @@ public class CrudController extends FilkomTourData {
         boolean found = false;
         EmployeeModel employee = null;
         for(int i = 0; i < employeeList.length; i++){
-            if(employeeList[i].getEmployeeId() == employeeId){
+            if(employeeList[i].getEmployeeId().equals(employeeId)){
+                System.out.println("\n------------------------------------------");
                 employeeList[i].displayEmployee();
                 found = true;
                 employee = employeeList[i];
@@ -168,7 +171,7 @@ public class CrudController extends FilkomTourData {
         boolean found = false;
         if(userState.equals("employee")){
             for(int i = 0; i < employeeList.length; i++){
-                if(employeeList[i].getEmployeeId() == employeeId){
+                if(employeeList[i].getEmployeeId().equals(employeeId)){
                     employeeList[i].updateEmployeeInfo(name, address, eMail, phoneNum, gender, position, salary);
                     found = true;
                 }
@@ -183,7 +186,7 @@ public class CrudController extends FilkomTourData {
         if(userState.equals("employee")){
             EmployeeModel[] newEmployeeList = new EmployeeModel[this.employeeList.length + 1];
             for(int i=0; i<newEmployeeList.length; i++){
-                if(this.employeeList[i].getEmployeeId() == employeeId){
+                if(this.employeeList[i].getEmployeeId().equals(employeeId)){
                     continue;
                 }
                 newEmployeeList[i] = this.employeeList[i];

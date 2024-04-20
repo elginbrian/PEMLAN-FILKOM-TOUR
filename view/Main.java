@@ -13,7 +13,7 @@ public class Main{
 
         /*
             What customers can do:
-            - Create, Read, Update, Delete Customer
+            - Create Customer
             - Read Car
             - Read Employee
             - Rent Car
