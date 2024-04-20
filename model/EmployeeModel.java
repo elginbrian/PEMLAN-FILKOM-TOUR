@@ -40,6 +40,10 @@ public class EmployeeModel {
         return salary;
     }
 
+    public String getEmployeeId(){
+        return employeeID;
+    }
+
     public void displayEmployee(){
         
     }

@@ -101,6 +101,57 @@ public class CrudController extends FilkomTourData {
         this.customerList = newCustomerList;    
     }
 
+    public void createEmployee(EmployeeModel newEmployee){
+        if(userState.equals("employee")){
+            EmployeeModel[] newEmployeeList = new EmployeeModel[this.employeeList.length + 1];
+            for(int i = 0; i < this.employeeList.length; i++){
+                newEmployeeList[i] = this.employeeList[i];
+            }
+            newEmployeeList[newEmployeeList.length - 1] = newEmployee;
+            this.employeeList = newEmployeeList;
+        }
+    }
+
+    public void readEmployee(String employeeId){
+        for(int i = 0; i < employeeList.length; i++){
+            if(employeeList[i].getEmployeeId() == employeeId){
+                employeeList[i].displayEmployee();
+            }
+        }
+    }
+
+    public void updateEmployee(
+        String employeeId, 
+        String name, 
+        String address, 
+        String eMail, 
+        String phoneNum, 
+        String gender, 
+        String position, 
+        Double salary
+    ){
+        if(userState.equals("employee")){
+            for(int i = 0; i < employeeList.length; i++){
+                if(employeeList[i].getEmployeeId() == employeeId){
+                    employeeList[i].updateEmployeeInfo(name, address, eMail, phoneNum, gender, position, salary);
+                }
+            }
+        }
+    }    
+
+    public void deleteEmployee(String employeeId){
+        if(userState.equals("employee")){
+            EmployeeModel[] newEmployeeList = new EmployeeModel[this.employeeList.length + 1];
+            for(int i=0; i<newEmployeeList.length; i++){
+                if(this.employeeList[i].getEmployeeId() == employeeId){
+                    continue;
+                }
+                newEmployeeList[i] = this.employeeList[i];
+            }
+            this.employeeList = newEmployeeList;
+        }
+    }
+
     @Override
     public void displayCustomerList(){
         if(userState.equals("employee")){
