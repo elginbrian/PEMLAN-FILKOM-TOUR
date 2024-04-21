@@ -1,13 +1,13 @@
 //package view;
 import java.util.*;
-import controller.Crud;
-import controller.TransactionController;
+import controller.CrudController;
+import controller.RentController;
 
 public class Main{
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Crud crud = new Crud();
-        TransactionController transaction = new TransactionController();
+        CrudController crud = new CrudController();
+        RentController transaction = new RentController();
         boolean continueLoop = true;
 
         /*

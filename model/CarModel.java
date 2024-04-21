@@ -6,8 +6,6 @@ public class CarModel {
    private String carColor;
    private int year;
    private Double tankCapacity;
-   private Double rating = 0.0;
-   private Boolean isDiesel = false;
    private Boolean isRented = false;
 
    public CarModel(String numPlate, String carBrand, String carColor, int year, double tankCapacity) {
@@ -25,17 +23,9 @@ public class CarModel {
         this.year = year;
         this.tankCapacity = tankCapacity;
     }
-
-    public void setFuelType(boolean isDiesel){
-        this.isDiesel=isDiesel;
-    }
     
     public void setRentStatus(boolean isRented){
         this.isRented=isRented;
-    }
-
-    public void setRate(Double rating){
-        this.rating=rating;
     }
 
     public boolean getRentStatus(){
@@ -98,8 +88,6 @@ public class CarModel {
         System.out.println("Color         : " + carColor);
         System.out.println("Year          : " + year);
         System.out.println("Tank Capacity : " + tankCapacity);
-        System.out.println("Rating        : " + rating);
-        System.out.println("Fuel Type     : " + (isDiesel ? "Diesel" : "Gasoline"));
         System.out.println("Rented Status : " + (isRented ? "Rented" : "Available"));
         System.out.println("------------------------------------------");
     }

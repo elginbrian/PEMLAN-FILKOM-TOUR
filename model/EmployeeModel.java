@@ -9,7 +9,6 @@ public class EmployeeModel {
     private String gender;
     private String position;
     private Double salary;
-    private Double rating=0.0;
 
     public EmployeeModel(String employeeID, String name, String address, String eMail, String phoneNum, String gender, String position, Double salary){
         this.employeeID=employeeID;
@@ -32,10 +31,6 @@ public class EmployeeModel {
         this.salary=salary;
     }
 
-    public void setRate(double rating){
-        this.rating=rating;
-    }
-
     public double getFee(int day){
         return Math.round((salary / 90) * day);
     }
@@ -53,7 +48,6 @@ public class EmployeeModel {
         System.out.println("gender     : "+gender);
         System.out.println("position   : "+position);
         System.out.println("salary     : "+salary);
-        System.out.println("rating     : "+rating);
         System.out.println("------------------------------------------");
     }
 }

@@ -1,9 +1,9 @@
-import controller.Crud;
+import controller.CrudController;
 import java.util.*;
 import model.CustomerModel;
 
 public class CustomerMenu {
-    public static void DisplayCustomerMenu(String[] args, Crud crud) {
+    public static void DisplayCustomerMenu(String[] args, CrudController crud) {
         Scanner input = new Scanner(System.in);
         boolean continueLoop = true;
         

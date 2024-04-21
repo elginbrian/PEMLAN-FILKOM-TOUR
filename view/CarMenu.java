@@ -1,9 +1,9 @@
-import controller.Crud;
+import controller.CrudController;
 import model.*;
 import java.util.*;
 
 public class CarMenu {
-    public static void DisplayCarMenu(String[] args, Crud crud) {
+    public static void DisplayCarMenu(String[] args, CrudController crud) {
         Scanner input = new Scanner(System.in);
         boolean continueLoop = true;
 

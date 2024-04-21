@@ -5,7 +5,7 @@ import model.EmployeeModel;
 import model.CustomerModel;
 import java.util.*;
 
-public class FilkomTourData {
+public class AppData {
     public static  String userState = "customer";
     public static CustomerModel currentCustomer = new CustomerModel("N/A", "N/A", "N/A", 0, "N/A", "N/A");
 
@@ -48,6 +48,7 @@ public class FilkomTourData {
         )
     };
     protected static CustomerModel[] customerList = {};
+    protected static Transaction transactionList[] = {};
 
     public void displayCarList(){
         for(int i=0; i<carList.length; i++){

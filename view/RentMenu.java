@@ -1,12 +1,12 @@
-import controller.Crud;
-import controller.TransactionController;
+import controller.CrudController;
+import controller.RentController;
 import model.CarModel;
 import model.EmployeeModel;
 
 import java.util.*;
 
 public class RentMenu {
-    public static void DisplayRentMenu(String[] args, TransactionController transaction, Crud crud) {
+    public static void DisplayRentMenu(String[] args, RentController transaction, CrudController crud) {
         if(crud.userState == "customer"){
             Scanner input = new Scanner(System.in);
             System.out.println("\n=========================================");

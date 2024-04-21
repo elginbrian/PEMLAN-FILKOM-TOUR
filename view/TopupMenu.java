@@ -1,8 +1,8 @@
-import controller.Crud;
+import controller.CrudController;
 import java.util.*;
 
 public class TopupMenu {
-    public static void DisplayTopupMenu(String[] args, Crud crud){
+    public static void DisplayTopupMenu(String[] args, CrudController crud){
         Scanner input = new Scanner(System.in);
         System.out.println("\n=========================================");
         System.out.println("MENU TOP-UP");
