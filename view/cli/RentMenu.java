@@ -1,3 +1,5 @@
+package cli;
+
 import controller.CrudController;
 import controller.RentController;
 import model.CarModel;

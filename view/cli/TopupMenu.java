@@ -1,3 +1,5 @@
+package cli;
+
 import controller.CrudController;
 import java.util.*;
 

@@ -1,9 +1,9 @@
-//package view;
+package cli;//package view;
 import java.util.*;
 import controller.CrudController;
 import controller.RentController;
 
-public class Main{
+public class CLIMain {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         CrudController crud = new CrudController();
