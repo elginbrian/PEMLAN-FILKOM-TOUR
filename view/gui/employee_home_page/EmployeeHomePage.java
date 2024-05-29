@@ -15,6 +15,7 @@ public class EmployeeHomePage extends JFrame {
     private JLabel mainLabel;
     private JPanel panel;
     private JButton logoutButton;
+    private boolean openSidePanel = false;
 
     public EmployeeHomePage(UserModel user){
         setTitle("FILKOM TOUR & TRAVEL - Employee Home");
@@ -37,6 +38,23 @@ public class EmployeeHomePage extends JFrame {
         topPanel.setBackground(new Color(97, 0, 141));
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+        JPanel sidePanel = new JPanel();
+        sidePanel.setBackground(new Color(0x121212));
+        sidePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JButton viewAllButton = new JButton("      View All Vehicles      ");
+        viewAllButton.setFont(new Font("Arial", Font.PLAIN, 14));
+        viewAllButton.setBackground(new Color(30, 29, 29));
+        viewAllButton.setForeground(Color.WHITE);
+        viewAllButton.setBorderPainted(false);
+
+        JButton addNewButton = new JButton("      Insert New Vehicle      ");
+        addNewButton.setFont(new Font("Arial", Font.PLAIN, 14));
+        addNewButton.setBackground(new Color(30, 29, 29));
+        addNewButton.setForeground(Color.WHITE);
+        addNewButton.setBorderPainted(false);
+
+
         JButton menuButton = new JButton("Menu");
         menuButton.setFont(new Font("Arial", Font.PLAIN, 14));
         menuButton.setBackground(new Color(136, 0, 215));
@@ -57,7 +75,12 @@ public class EmployeeHomePage extends JFrame {
         topPanel.add(logoutButton);
         topPanel.add(date);
 
+        sidePanel.add(viewAllButton);
+//        sidePanel.add(addNewButton);
+
         panel.add(topPanel, BorderLayout.NORTH);
+        panel.add(sidePanel, BorderLayout.WEST);
+        sidePanel.setVisible(false);
 
         logoutButton.addActionListener(new ActionListener() {
             @Override
@@ -68,6 +91,13 @@ public class EmployeeHomePage extends JFrame {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+            }
+        });
+
+        menuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sidePanel.setVisible(openSidePanel = !openSidePanel);
             }
         });
     }
