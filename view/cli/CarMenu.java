@@ -1,7 +1,8 @@
 package cli;
 
 import controller.CrudController;
-import model.*;
+import model.CarModel;
+
 import java.util.*;
 
 public class CarMenu {

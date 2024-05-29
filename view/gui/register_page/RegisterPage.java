@@ -1,6 +1,8 @@
 package gui.register_page;
 
+import controller.UserController;
 import gui.login_page.LoginPage;
+import model.UserModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,10 +11,13 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class RegisterPage extends JFrame {
+    private JLabel mainLabel;
     private JLabel userLabel;
     private JLabel passwordLabel;
+    private JLabel typeLabel;
     private JTextField userTextField;
     private JPasswordField passwordField;
+    private JComboBox<String> typeBox;
     private JButton createButton;
     private JButton backButton;
     private JLabel messageLabel;
@@ -37,6 +42,10 @@ public class RegisterPage extends JFrame {
         imageLabel.setBounds(0,0,400,500);
         panel.add(imageLabel);
 
+        mainLabel = new JLabel("REGISTER");
+        mainLabel.setForeground(Color.WHITE);
+        mainLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        mainLabel.setBounds(450, 100, 300, 25);
 
         userLabel = new JLabel("Username:");
         userLabel.setForeground(Color.WHITE);
@@ -56,30 +65,42 @@ public class RegisterPage extends JFrame {
         passwordField.setBounds(550, 200, 200, 25);
         passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
 
+        typeLabel = new JLabel("Type:");
+        typeLabel.setForeground(Color.WHITE);
+        typeLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        typeLabel.setBounds(450, 250, 100, 25);
+
+        String[] types = {"customer", "employee"};
+        typeBox = new JComboBox<>(types);
+        typeBox.setBounds(550, 250, 200, 25);
+
         createButton = new JButton("Create Account");
-        createButton.setBounds(470, 260, 160, 30);
+        createButton.setBounds(470, 310, 160, 30);
         createButton.setFont(new Font("Arial", Font.BOLD, 14));
         createButton.setBackground(new Color(97, 0, 141));
         createButton.setForeground(Color.WHITE);
         createButton.setBorderPainted(false);
 
         backButton = new JButton("Back");
-        backButton.setBounds(640, 260, 80, 30);
+        backButton.setBounds(640, 310, 80, 30);
         backButton.setFont(new Font("Arial", Font.BOLD, 14));
         backButton.setBackground(new Color(220, 53, 69));
         backButton.setForeground(Color.WHITE);
         backButton.setBorderPainted(false);
 
         messageLabel = new JLabel("", SwingConstants.CENTER);
-        messageLabel.setBounds(450, 310, 300, 25);
+        messageLabel.setBounds(450, 360, 300, 25);
         messageLabel.setForeground(Color.YELLOW);
-        messageLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        messageLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 
 
+        panel.add(mainLabel);
         panel.add(userLabel);
         panel.add(userTextField);
         panel.add(passwordLabel);
         panel.add(passwordField);
+        panel.add(typeLabel);
+        panel.add(typeBox);
         panel.add(createButton);
         panel.add(backButton);
         panel.add(messageLabel);
@@ -88,7 +109,24 @@ public class RegisterPage extends JFrame {
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String result = UserController.PostUser(new UserModel(
+                        userTextField.getText(),
+                        passwordField.getText(),
+                        typeBox.getItemAt(typeBox.getSelectedIndex())
+                ));
 
+                messageLabel.setText(result);
+
+                if(result.equals("Insert data success")){
+                    messageLabel.setVisible(false);
+                    JOptionPane.showMessageDialog(null, result, "Notification", JOptionPane.INFORMATION_MESSAGE);
+                    try {
+                        LoginPage.run();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    setVisible(false);
+                }
             }
         });
 

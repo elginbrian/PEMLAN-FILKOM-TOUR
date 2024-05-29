@@ -1,7 +1,5 @@
 package controller;
 
-import model.CustomerModel;
-import java.util.UUID;
 import model.CarModel;
 import model.EmployeeModel;
 

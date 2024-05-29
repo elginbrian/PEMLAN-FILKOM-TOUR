@@ -1,6 +1,10 @@
 package gui.login_page;
 
+import controller.UserController;
+import gui.employee_home_page.EmployeeHomePage;
 import gui.register_page.RegisterPage;
+import model.UserModel;
+import util.StringToArray;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class LoginPage extends JFrame {
+    private JLabel mainLabel;
     private JLabel userLabel;
     private JLabel passwordLabel;
     private JTextField userTextField;
@@ -37,6 +42,10 @@ public class LoginPage extends JFrame {
         imageLabel.setBounds(0,0,400,500);
         panel.add(imageLabel);
 
+        mainLabel = new JLabel("LOGIN");
+        mainLabel.setForeground(Color.WHITE);
+        mainLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        mainLabel.setBounds(450, 100, 300, 25);
 
         userLabel = new JLabel("Username:");
         userLabel.setForeground(Color.WHITE);
@@ -71,15 +80,16 @@ public class LoginPage extends JFrame {
         registerButton.setBorderPainted(false);
 
         messageLabel = new JLabel("", SwingConstants.CENTER);
-        messageLabel.setBounds(450, 300, 300, 25);
+        messageLabel.setBounds(440, 300, 300, 25);
         messageLabel.setForeground(Color.YELLOW);
-        messageLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        messageLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 
         switchLabel = new JLabel("Belum punya akun? Klik Register", SwingConstants.CENTER);
         switchLabel.setBounds(440, 320, 300, 25);
         switchLabel.setForeground(Color.WHITE);
-        switchLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        switchLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 
+        panel.add(mainLabel);
         panel.add(userLabel);
         panel.add(userTextField);
         panel.add(passwordLabel);
@@ -92,7 +102,20 @@ public class LoginPage extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String result = UserController.LoginUser(
+                        userTextField.getText(),
+                        passwordField.getText()
+                );
+                messageLabel.setText(result);
 
+                String[] arr   = StringToArray.convert(result);
+                UserModel user = new UserModel(arr[0], arr[1], arr[2], arr[3]);
+                if(arr[3].equals("customer")){
+
+                } else if(arr[3].equals("employee")){
+                    EmployeeHomePage.run(user);
+                    setVisible(false);
+                }
             }
         });
 
