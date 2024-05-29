@@ -37,7 +37,7 @@ public class LoginPage extends JFrame {
         panel.setLayout(null);
         add(panel);
 
-        ImageIcon imageIcon = new ImageIcon("D:\\PEMLAN-FILKOM-TOUR\\view\\gui\\src\\image.jpg");
+        ImageIcon imageIcon = new ImageIcon("view/gui/src/image.jpg");
         JLabel imageLabel = new JLabel(imageIcon);
         imageLabel.setBounds(0,0,400,500);
         panel.add(imageLabel);

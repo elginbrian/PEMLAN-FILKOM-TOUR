@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.util.List;
 
 public class UserController {
-    private static final String route = "D:\\PEMLAN-FILKOM-TOUR\\controller\\UserTable.txt";
+    private static final String route = "controller/UserTable.txt";
 
     public static String PostUser(UserModel user) {
         try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(route, true))){
