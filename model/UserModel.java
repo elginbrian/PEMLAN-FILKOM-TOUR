@@ -34,6 +34,8 @@ public class UserModel {
         return this.password;
     }
 
+    public String getType() { return  this.type; }
+
     public void updateData(String username, String password){
         this.username = username;
         this.password = password;

@@ -1,15 +1,19 @@
 package gui.employee_home_page;
 
 
+import util.SwitchPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SidePanel extends JPanel {
+public class EmployeeSidePanel extends JPanel {
+    private boolean openTransactionDrop = false;
     private boolean openVehicleDrop = false;
     private boolean openEmployeeDrop = false;
     private boolean openCustDrop = false;
+    private JButton showTransactionButton;
     private JButton createVehicleButton;
     private JButton showVehicleButton;
     private JButton createEmployeeButton;
@@ -18,20 +22,21 @@ public class SidePanel extends JPanel {
     private JButton showCustomerButton;
     private Dimension buttonSize = new Dimension(240, 40);
 
-    public SidePanel() {
+    public EmployeeSidePanel(JPanel centerPanel) {
         setBackground(new Color(0x121212));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JButton transactionButton = createButton("TRANSACTION", new Color(43, 42, 42));
-        JButton vehicleButton = createButton("VEHICLE", new Color(43, 42, 42));
-        createVehicleButton = createButton("INSERT NEW VEHICLE", new Color(82, 58, 214));
-        showVehicleButton = createButton("SHOW ALL VEHICLES", new Color(82, 58, 214));
-        JButton employeeButton = createButton("EMPLOYEE", new Color(43, 42, 42));
-        createEmployeeButton = createButton("INSERT NEW EMPLOYEE", new Color(82, 58, 214));
-        showEmployeeButton = createButton("SHOW ALL EMPLOYEES", new Color(82, 58, 214));
-        JButton customerButton = createButton("CUSTOMER", new Color(43, 42, 42));
-        createCustomerButton = createButton("INSERT NEW CUSTOMER", new Color(82, 58, 214));
-        showCustomerButton = createButton("SHOW ALL CUSTOMERS", new Color(82, 58, 214));
+        showTransactionButton     = createButton("SHOW ALL TRANSACTION", new Color(82, 58, 214));
+        JButton vehicleButton     = createButton("VEHICLE", new Color(43, 42, 42));
+        createVehicleButton       = createButton("MODIFY VEHICLES", new Color(82, 58, 214));
+        showVehicleButton         = createButton("SHOW ALL VEHICLES", new Color(82, 58, 214));
+        JButton employeeButton    = createButton("EMPLOYEE", new Color(43, 42, 42));
+        createEmployeeButton      = createButton("MODIFY EMPLOYEES", new Color(82, 58, 214));
+        showEmployeeButton        = createButton("SHOW ALL EMPLOYEES", new Color(82, 58, 214));
+        JButton customerButton    = createButton("CUSTOMER", new Color(43, 42, 42));
+        createCustomerButton      = createButton("MODIFY CUSTOMERS", new Color(82, 58, 214));
+        showCustomerButton        = createButton("SHOW ALL CUSTOMERS", new Color(82, 58, 214));
 
         createVehicleButton.setVisible(false);
         showVehicleButton.setVisible(false);
@@ -41,6 +46,7 @@ public class SidePanel extends JPanel {
         showCustomerButton.setVisible(false);
 
         add(transactionButton);
+        add(showTransactionButton);
         add(vehicleButton);
         add(createVehicleButton);
         add(showVehicleButton);
@@ -50,6 +56,14 @@ public class SidePanel extends JPanel {
         add(customerButton);
         add(createCustomerButton);
         add(showCustomerButton);
+
+        transactionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openTransactionDrop = !openTransactionDrop;
+                showTransactionButton.setVisible(openTransactionDrop);
+            }
+        });
 
         vehicleButton.addActionListener(new ActionListener() {
             @Override
@@ -77,6 +91,34 @@ public class SidePanel extends JPanel {
                 showCustomerButton.setVisible(openCustDrop);
             }
         });
+
+        showTransactionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwitchPanel.implement(centerPanel, new TransactionPanel());
+            }
+        });
+
+        showVehicleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwitchPanel.implement(centerPanel, new VehiclePanel());
+            }
+        });
+
+        showEmployeeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwitchPanel.implement(centerPanel, new EmployeePanel());
+            }
+        });
+
+        showCustomerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwitchPanel.implement(centerPanel, new CustomerPanel());
+            }
+        });
     }
 
     private JButton createButton(String text, Color backgroundColor) {
@@ -100,9 +142,11 @@ public class SidePanel extends JPanel {
     }
 
     private void resetDropdowns() {
+        openTransactionDrop = false;
         openVehicleDrop = false;
         openEmployeeDrop = false;
         openCustDrop = false;
+        showTransactionButton.setVisible(false);
         createVehicleButton.setVisible(false);
         showVehicleButton.setVisible(false);
         createEmployeeButton.setVisible(false);

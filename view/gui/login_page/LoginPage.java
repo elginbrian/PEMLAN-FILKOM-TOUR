@@ -1,6 +1,7 @@
 package gui.login_page;
 
 import controller.UserController;
+import gui.customer_home_page.CustomerHomePage;
 import gui.employee_home_page.EmployeeHomePage;
 import gui.register_page.RegisterPage;
 import model.UserModel;
@@ -111,7 +112,8 @@ public class LoginPage extends JFrame {
                 String[] arr   = StringToArray.convert(result);
                 UserModel user = new UserModel(arr[0], arr[1], arr[2], arr[3]);
                 if(arr[3].equals("customer")){
-
+                    CustomerHomePage.run(user);
+                    setVisible(false);
                 } else if(arr[3].equals("employee")){
                     EmployeeHomePage.run(user);
                     setVisible(false);
