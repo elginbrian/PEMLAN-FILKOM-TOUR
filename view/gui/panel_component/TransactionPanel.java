@@ -34,9 +34,24 @@ public class TransactionPanel extends JPanel {
         expandButton.setForeground(Color.WHITE);
         expandButton.setBorderPainted(false);
 
+        String[] sortCriteria = {"Customer", "Employee", "Vehicle", "Day", "Price", "Is Returned"};
+        JComboBox comboBox = new JComboBox<>(sortCriteria);
+        comboBox.setBounds(160, 670, 120, 30);
+        comboBox.setBackground(new Color(30, 29, 29));
+        comboBox.setForeground(Color.WHITE);
+
+        JButton sortButton = new JButton("Sort");
+        sortButton.setBounds(290, 670, 80, 30);
+        sortButton.setFont(new Font("Arial", Font.PLAIN, 14));
+        sortButton.setBackground(new Color(97, 0, 141));
+        sortButton.setForeground(Color.WHITE);
+        sortButton.setBorderPainted(false);
+
         add(scrollPane);
         add(mainLabel);
         add(expandButton);
+        add(comboBox);
+        add(sortButton);
 
 
         expandButton.addActionListener(new ActionListener() {
