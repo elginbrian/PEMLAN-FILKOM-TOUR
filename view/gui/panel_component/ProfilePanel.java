@@ -1,4 +1,4 @@
-package gui.employee_home_page;
+package gui.panel_component;
 
 import model.UserModel;
 

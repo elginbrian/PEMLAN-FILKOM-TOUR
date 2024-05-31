@@ -12,7 +12,7 @@ public class CustomerTopPanel extends JPanel {
     private JButton profileButton;
     private JButton logoutButton;
 
-    public CustomerTopPanel(ActionListener menuActionListener, ActionListener logoutActionListener) {
+    public CustomerTopPanel(ActionListener menuActionListener, ActionListener logoutActionListener, ActionListener profileActionListener) {
         setBackground(new Color(97, 0, 141));
         setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -24,6 +24,7 @@ public class CustomerTopPanel extends JPanel {
         date.setFont(new Font("Arial", Font.PLAIN, 14));
 
         menuButton.addActionListener(menuActionListener);
+        profileButton.addActionListener(profileActionListener);
         logoutButton.addActionListener(logoutActionListener);
 
         add(menuButton);

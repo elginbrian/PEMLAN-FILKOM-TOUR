@@ -1,6 +1,7 @@
 package gui.employee_home_page;
 
 
+import gui.panel_component.*;
 import util.SwitchPanel;
 
 import javax.swing.*;

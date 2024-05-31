@@ -1,4 +1,4 @@
-package gui.employee_home_page;
+package gui.panel_component;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -6,19 +6,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VehiclePanel extends JPanel {
+public class EmployeePanel extends JPanel {
     private boolean expand = false;
 
-    public VehiclePanel(){
+    public EmployeePanel(){
         setBackground(new Color(30, 29, 29));
         setLayout(null);
 
-        JLabel mainLabel = new JLabel("ALL FILKOM TOUR'S VEHICLES");
+        JLabel mainLabel = new JLabel("ALL FILKOM TOUR'S EMPLOYEES");
         mainLabel.setForeground(Color.WHITE);
         mainLabel.setFont(new Font("Arial", Font.BOLD, 30));
         mainLabel.setBounds(50, 50, 600, 25);
 
-        String[] columnNames = {"Numplate", "Brand", "Color", "Year", "Tank Capacity", "Is Rented"};
+        String[] columnNames = {"ID", "Name", "Address", "Email", "PhoneNum", "Gender", "Position", "Salary"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         JTable taskTable = new JTable(tableModel);
 

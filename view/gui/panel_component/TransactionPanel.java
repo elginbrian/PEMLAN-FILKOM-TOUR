@@ -1,4 +1,4 @@
-package gui.employee_home_page;
+package gui.panel_component;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -6,21 +6,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EmployeePanel extends JPanel {
+public class TransactionPanel extends JPanel {
+    private JTable taskTable;
+    private DefaultTableModel tableModel;
     private boolean expand = false;
 
-    public EmployeePanel(){
+    public TransactionPanel(){
         setBackground(new Color(30, 29, 29));
         setLayout(null);
 
-        JLabel mainLabel = new JLabel("ALL FILKOM TOUR'S EMPLOYEES");
+        JLabel mainLabel = new JLabel("ALL CUSTOMER'S TRANSACTIONS");
         mainLabel.setForeground(Color.WHITE);
         mainLabel.setFont(new Font("Arial", Font.BOLD, 30));
         mainLabel.setBounds(50, 50, 600, 25);
 
-        String[] columnNames = {"ID", "Name", "Address", "Email", "PhoneNum", "Gender", "Position", "Salary"};
-        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-        JTable taskTable = new JTable(tableModel);
+        String[] columnNames = {"Id", "Customer", "Employee", "Vehicle", "Day", "Price", "Is Returned"};
+        tableModel = new DefaultTableModel(columnNames, 0);
+        taskTable = new JTable(tableModel);
 
         JScrollPane scrollPane = new JScrollPane(taskTable);
         scrollPane.setBounds(50, 100, 650, 560);

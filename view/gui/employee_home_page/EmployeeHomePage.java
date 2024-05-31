@@ -1,6 +1,7 @@
 package gui.employee_home_page;
 
 import gui.login_page.LoginPage;
+import gui.panel_component.ProfilePanel;
 import model.UserModel;
 import util.SwitchPanel;
 

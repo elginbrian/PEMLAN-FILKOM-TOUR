@@ -1,8 +1,9 @@
 package gui.customer_home_page;
 
-import gui.employee_home_page.EmployeeTopPanel;
+import gui.panel_component.ProfilePanel;
 import gui.login_page.LoginPage;
 import model.UserModel;
+import util.SwitchPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class CustomerHomePage extends JFrame {
     private JLabel mainLabel;
     private JPanel panel;
+    private boolean showProfile = false;
     private boolean openSidePanel = false;
     private CustomerSidePanel customerSidePanel;
 
@@ -26,6 +28,9 @@ public class CustomerHomePage extends JFrame {
         panel = new JPanel(new BorderLayout());
         panel.setBackground(new Color(30, 29, 29));
         add(panel);
+
+        JPanel centerPanel = new JPanel(new BorderLayout());
+        centerPanel.setBackground(new Color(30, 29, 29));
 
         mainLabel = new JLabel("WELCOME BACK, " + user.getUsername().toUpperCase() + "!");
         mainLabel.setForeground(Color.WHITE);
@@ -49,8 +54,9 @@ public class CustomerHomePage extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.anchor = GridBagConstraints.WEST;
         backgroundPanel.add(mainLabel, gbc);
+        centerPanel.add(backgroundPanel, BorderLayout.CENTER);
 
-        customerSidePanel = new CustomerSidePanel();
+        customerSidePanel = new CustomerSidePanel(centerPanel);
         CustomerTopPanel employeeTopPanel = new CustomerTopPanel(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,11 +73,21 @@ public class CustomerHomePage extends JFrame {
                     throw new RuntimeException(ex);
                 }
             }
+        }, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showProfile = !showProfile;
+                if(showProfile){
+                    SwitchPanel.implement(centerPanel, new ProfilePanel(user));
+                } else {
+                    SwitchPanel.implement(centerPanel, backgroundPanel);
+                }
+            }
         });
 
         panel.add(employeeTopPanel, BorderLayout.NORTH);
         panel.add(customerSidePanel, BorderLayout.WEST);
-        panel.add(backgroundPanel, BorderLayout.CENTER);
+        panel.add(centerPanel, BorderLayout.CENTER);
         customerSidePanel.setVisible(false);
     }
 
