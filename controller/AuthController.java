@@ -1,5 +1,7 @@
 package controller;
 
+import model.CustomerModel;
+import model.EmployeeModel;
 import model.UserModel;
 import util.StringToArray;
 
@@ -22,6 +24,12 @@ public class AuthController extends AppController {
             }
             bfWriter.write(user.getStringArray());
             bfWriter.newLine();
+
+            if(user.getType().equals("customer")){
+                DataController.postCustomer(new CustomerModel(user.getUserID(), user.getUsername(), user.getPassword(), user.getType()));
+            } else {
+                DataController.postEmployee(new EmployeeModel(user.getUserID(), user.getUsername(), user.getPassword(), user.getType()));
+            }
             return "Insert data success";
         } catch (Exception e){
             return e.getLocalizedMessage();

@@ -1,12 +1,14 @@
 package model;
 
+import java.util.Arrays;
+
 public class CustomerModel extends UserModel {
     private String customerID = super.getUserID();
-    private String phoneNum;
-    private String name;
-    private int age;
-    private String address;
-    private String gender;
+    private String phoneNum = "Undecided";
+    private String name = super.getUsername();
+    private int age = 0;
+    private String address = "Undecided";
+    private String gender = "Undecided";
     private Double balance=0.0;
 
     public CustomerModel(String customerID, String phoneNum, String name, int age, String address, String gender){
@@ -16,6 +18,29 @@ public class CustomerModel extends UserModel {
         this.age=age;
         this.address=address;
         this.gender=gender;
+    }
+
+    public CustomerModel(String customerID, String phoneNum, String name, int age, String address, String gender, Double balance){
+        super(name, "customer", "customer");
+        this.customerID = customerID;
+        this.phoneNum=phoneNum;
+        this.name=name;
+        this.age=age;
+        this.address=address;
+        this.gender=gender;
+        this.balance = balance;
+    }
+
+    public CustomerModel(String userID, String username, String password, String type){
+        super(userID, username, password, type);
+    }
+
+    @Override
+    public String getStringArray(){
+        String[] arr = {customerID, phoneNum, name, String.valueOf(age), address, gender, balance.toString()};
+        String stringArr = Arrays.toString(arr);
+
+        return stringArr;
     }
 
     public String getCustomerId(){

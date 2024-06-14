@@ -1,0 +1,1 @@
+[N 111 AB, Toyota Avanza, Putih, 2018, 40000.0, false]

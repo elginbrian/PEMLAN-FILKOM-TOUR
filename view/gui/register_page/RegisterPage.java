@@ -2,6 +2,7 @@ package gui.register_page;
 
 import controller.AuthController;
 import gui.login_page.LoginPage;
+import model.CustomerModel;
 import model.UserModel;
 
 import javax.swing.*;

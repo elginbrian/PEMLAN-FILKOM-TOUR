@@ -2,13 +2,13 @@ package model;
 
 public class EmployeeModel extends UserModel{
     private String employeeID = super.getUserID();
-    private String name;
-    private String address;
-    private String eMail;
-    private String phoneNum;
-    private String gender;
-    private String position;
-    private Double salary;
+    private String name = super.getUsername();
+    private String address = "undecided";
+    private String eMail = "undecided";
+    private String phoneNum = "undecided";
+    private String gender = "undecided";
+    private String position = "undecided";
+    private Double salary = 0.0;
 
     public EmployeeModel(String employeeID, String name, String address, String eMail, String phoneNum, String gender, String position, Double salary){
         super(name, "employee", "employee");
@@ -19,6 +19,10 @@ public class EmployeeModel extends UserModel{
         this.gender=gender;
         this.position=position;
         this.salary=salary;
+    }
+
+    public EmployeeModel(String userID, String username, String password, String type){
+        super(userID, username, password, type);
     }
 
     public void updateEmployeeInfo(String name, String address, String eMail, String phoneNum, String gender, String position, Double salary){

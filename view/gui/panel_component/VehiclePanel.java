@@ -1,10 +1,18 @@
 package gui.panel_component;
 
+import controller.AppController;
+import model.CarModel;
+import util.DateTimeConverter;
+import util.StringToArray;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class VehiclePanel extends JPanel {
     private boolean expand = false;
@@ -21,6 +29,8 @@ public class VehiclePanel extends JPanel {
         String[] columnNames = {"Numplate", "Brand", "Color", "Year", "Tank Capacity", "Is Rented"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         JTable taskTable = new JTable(tableModel);
+
+        loadData(AppController.getCarList(), tableModel);
 
         JScrollPane scrollPane = new JScrollPane(taskTable);
         scrollPane.setBounds(50, 100, 650, 560);
@@ -65,5 +75,21 @@ public class VehiclePanel extends JPanel {
                 }
             }
         });
+    }
+
+    private void loadData(List<CarModel> carList, DefaultTableModel tableModel) {
+        tableModel.setRowCount(0);
+        for (CarModel car : carList) {
+            String[] arr = StringToArray.convert(car.getStringArray());
+            Object[] rowData = {
+                    arr[0],
+                    arr[1],
+                    arr[2],
+                    arr[3],
+                    arr[4],
+                    arr[5]
+            };
+            tableModel.addRow(rowData);
+        }
     }
 }

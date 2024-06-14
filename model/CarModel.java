@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class CarModel {
    private String numPlate;
    private String carBrand;
@@ -14,6 +16,22 @@ public class CarModel {
         this.carColor = carColor;
         this.year = year;
         this.tankCapacity = tankCapacity;
+   }
+
+   public CarModel(String numPlate, String carBrand, String carColor, int year, double tankCapacity, boolean isRented){
+       this.numPlate = numPlate;
+       this.carBrand = carBrand;
+       this.carColor = carColor;
+       this.year = year;
+       this.tankCapacity = tankCapacity;
+       this.isRented = isRented;
+   }
+
+    public String getStringArray(){
+        String[] arr = {numPlate, carBrand, carColor, String.valueOf(year), tankCapacity.toString(), isRented.toString()};
+        String stringArr = Arrays.toString(arr);
+
+        return stringArr;
     }
 
     public void updateCarInfo(String numPlate, String carBrand, String carColor, int year, double tankCapacity) {
@@ -80,7 +98,6 @@ public class CarModel {
     
         return totalPrice;
     }
-    
 
     public void displayCar(){
         System.out.println("Number Plate  : " + numPlate);

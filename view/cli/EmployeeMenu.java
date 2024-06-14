@@ -44,7 +44,7 @@ public class EmployeeMenu {
                     Double salary     = input.nextDouble();
 
                     EmployeeModel newEmployee = new EmployeeModel(employeeID, name, address, eMail, phoneNum, gender, position, salary);
-                    crud.createEmployee(newEmployee);
+                    crud.postEmployee(newEmployee);
                     break;
 
                 case 2:

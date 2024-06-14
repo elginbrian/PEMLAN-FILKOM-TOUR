@@ -1,5 +1,1 @@
-[89988828-d02f-4d6a-b897-2c97342e73e0, admin, 123456, employee]
-[bae719a9-4b41-4bb3-a108-c3c0c526f1cc, cust1, 123456, customer]
-[a066efc0-ccdc-4df6-a09c-6bd100dbd8dc, cust2, 123456, customer]
-[f51e41da-6c0d-488e-8450-9fcd5353b7a9, cust3, 123456, customer]
-[4a1a2d6c-dec2-42ae-a394-690807ea22b8, elginbrian, 220406, employee]
+[87c9dc20-f4e6-4f0e-985f-8b67465a4846, elginbrian_cust, 220406, customer]
