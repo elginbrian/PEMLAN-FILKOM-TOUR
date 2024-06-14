@@ -92,8 +92,7 @@ public class AppController {
                         arr[2],
                         Integer.valueOf(arr[3]),
                         arr[4],
-                        arr[5],
-                        Double.valueOf(arr[6])
+                        arr[5]
                 );
                 result.displayCustomer();
                 list.add(result);
