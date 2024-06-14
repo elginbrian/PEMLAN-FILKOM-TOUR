@@ -1,7 +1,6 @@
 package gui.panel_component;
 
 import controller.DataController;
-import model.CustomerModel;
 import model.EmployeeModel;
 import util.SwitchPanel;
 
@@ -29,7 +28,7 @@ public class EmployeeModifyPanel extends JPanel {
     }
 
     public class InitPanel extends JPanel {
-        private JLabel jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8;
+        private JLabel jLabel1, addressLabel, nameLabel, emailLabel, phoneLabel, genderLabel, positionLabel, salaryLabel;
         private JButton jButton1, jButton2, saves;
 
         public InitPanel(JPanel centerPanel) {
@@ -51,21 +50,24 @@ public class EmployeeModifyPanel extends JPanel {
                                     position.getText(),
                                     Double.valueOf(salary.getText())
                             ));
-                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            SwitchPanel.implement(centerPanel, new EmployeePanel());
                             break;
                         case 1:
-                            DataController.putCustomer(
+                            DataController.updateEmployee(
                                     "",
                                     name.getText(),
-                                    phoneNum.getText(),
                                     address.getText(),
-                                    gender.getText()
+                                    email.getText(),
+                                    phoneNum.getText(),
+                                    gender.getText(),
+                                    position.getText(),
+                                    Double.valueOf(salary.getText())
                             );
-                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            SwitchPanel.implement(centerPanel, new EmployeePanel());
                             break;
                         case 2:
-                            DataController.deleteCustomer(name.getText());
-                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            DataController.deleteEmployee(name.getText());
+                            SwitchPanel.implement(centerPanel, new EmployeePanel());
                             break;
                         default:
                             break;
@@ -76,13 +78,13 @@ public class EmployeeModifyPanel extends JPanel {
 
         private void initComponents() {
             jLabel1 = new JLabel();
-            jLabel2 = new JLabel();
-            jLabel3 = new JLabel();
-            jLabel4 = new JLabel();
-            jLabel5 = new JLabel();
-            jLabel6 = new JLabel();
-            jLabel7 = new JLabel();
-            jLabel8 = new JLabel();
+            addressLabel = new JLabel();
+            nameLabel = new JLabel();
+            emailLabel = new JLabel();
+            phoneLabel = new JLabel();
+            genderLabel = new JLabel();
+            positionLabel = new JLabel();
+            salaryLabel = new JLabel();
             name = new JTextField();
             address = new JTextField();
             email = new JTextField();
@@ -115,26 +117,26 @@ public class EmployeeModifyPanel extends JPanel {
             saves.setText("SAVE CHANGES");
             saves.setBorderPainted(false);
 
-            jLabel2.setForeground(new Color(255, 255, 255));
-            jLabel3.setText("Nama");
+            addressLabel.setForeground(new Color(255, 255, 255));
+            nameLabel.setText("Nama");
 
-            jLabel3.setForeground(new Color(255, 255, 255));
-            jLabel2.setText("Alamat");
+            nameLabel.setForeground(new Color(255, 255, 255));
+            addressLabel.setText("Alamat");
 
-            jLabel4.setForeground(new Color(255, 255, 255));
-            jLabel4.setText("Email");
+            emailLabel.setForeground(new Color(255, 255, 255));
+            emailLabel.setText("Email");
 
-            jLabel5.setForeground(new Color(255, 255, 255));
-            jLabel5.setText("No Telpon");
+            phoneLabel.setForeground(new Color(255, 255, 255));
+            phoneLabel.setText("No Telpon");
 
-            jLabel6.setForeground(new Color(255, 255, 255));
-            jLabel6.setText("Gender");
+            genderLabel.setForeground(new Color(255, 255, 255));
+            genderLabel.setText("Gender");
 
-            jLabel7.setForeground(new Color(255, 255, 255));
-            jLabel7.setText("Jabatan");
+            positionLabel.setForeground(new Color(255, 255, 255));
+            positionLabel.setText("Jabatan");
 
-            jLabel8.setForeground(new Color(255, 255, 255));
-            jLabel8.setText("Gaji");
+            salaryLabel.setForeground(new Color(255, 255, 255));
+            salaryLabel.setText("Gaji");
 
             GroupLayout layout = new GroupLayout(this);
             setLayout(layout);
@@ -157,13 +159,13 @@ public class EmployeeModifyPanel extends JPanel {
                                                                     .addComponent(jButton2))
                                                             .addGroup(layout.createSequentialGroup()
                                                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                                            .addComponent(jLabel3)
-                                                                            .addComponent(jLabel2)
-                                                                            .addComponent(jLabel4)
-                                                                            .addComponent(jLabel5)
-                                                                            .addComponent(jLabel6)
-                                                                            .addComponent(jLabel7)
-                                                                            .addComponent(jLabel8))
+                                                                            .addComponent(nameLabel)
+                                                                            .addComponent(addressLabel)
+                                                                            .addComponent(emailLabel)
+                                                                            .addComponent(phoneLabel)
+                                                                            .addComponent(genderLabel)
+                                                                            .addComponent(positionLabel)
+                                                                            .addComponent(salaryLabel))
                                                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                             .addComponent(name, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
@@ -184,31 +186,31 @@ public class EmployeeModifyPanel extends JPanel {
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))
+                                            .addComponent(nameLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(address, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2))
+                                            .addComponent(addressLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4))
+                                            .addComponent(emailLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(phoneNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5))
+                                            .addComponent(phoneLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(gender, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6))
+                                            .addComponent(genderLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(position, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7))
+                                            .addComponent(positionLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(salary, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8))
+                                            .addComponent(salaryLabel))
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(jButton2)

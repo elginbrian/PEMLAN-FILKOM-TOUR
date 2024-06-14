@@ -2,7 +2,10 @@ package gui.customer_home_page;
 
 
 import gui.panel_component.EmployeePanel;
+import gui.panel_component.TopUpPanel;
 import gui.panel_component.VehiclePanel;
+import model.CustomerModel;
+import model.UserModel;
 import util.SwitchPanel;
 
 import javax.swing.*;
@@ -20,7 +23,7 @@ public class CustomerSidePanel extends JPanel {
     private JButton showEmployeeButton;
     private Dimension buttonSize = new Dimension(240, 40);
 
-    public CustomerSidePanel(JPanel centerPanel) {
+    public CustomerSidePanel(JPanel centerPanel, UserModel current) {
         setBackground(new Color(0x121212));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -73,7 +76,7 @@ public class CustomerSidePanel extends JPanel {
         topUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SwitchPanel.implement(centerPanel, new TopUpPanel(current, centerPanel));
             }
         });
 

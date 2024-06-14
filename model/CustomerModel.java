@@ -37,7 +37,7 @@ public class CustomerModel extends UserModel {
 
     @Override
     public String getStringArray(){
-        String[] arr = {customerID, phoneNum, name, String.valueOf(age), address, gender, balance.toString()};
+        String[] arr = {customerID, address, name, phoneNum, gender, balance.toString(), String.valueOf(age)};
         String stringArr = Arrays.toString(arr);
 
         return stringArr;
@@ -46,6 +46,7 @@ public class CustomerModel extends UserModel {
     public String getCustomerId(){
         return customerID;
     }
+    public Double getBalance() {return balance; }
 
     public void updateCustomerInfo(String name, String phoneNum, String address, String gender){
         this.name=name;

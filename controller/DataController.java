@@ -116,36 +116,30 @@ public class DataController extends AppController {
 
     public static CustomerModel getCustomerById(String customerId){
         boolean found = false;
-        try {
-            BufferedReader bfReader = new BufferedReader(new FileReader(customerRoute));
-            String line;
-            CustomerModel result = new CustomerModel("","", "", 0, "","");
+        List<CustomerModel> list = getCustomerList();
 
-            while((line = bfReader.readLine()) != null){
-                if(line.contains(customerId)){
-                    String[] arr = StringToArray.convert(line);
-                    result = new CustomerModel(
-                            arr[0],
-                            arr[1],
-                            arr[2],
-                            Integer.valueOf(arr[3]),
-                            arr[4],
-                            arr[5],
-                            Double.valueOf(arr[6])
-                    );
-                    result.displayCustomer();
+        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(customerRoute, false))) {
+            CustomerModel result = new CustomerModel("","","","");
+            for (CustomerModel customer : list) {
+                if(
+                        customer.getCustomerId().equalsIgnoreCase(customerId) || customer.getUsername().equalsIgnoreCase(customerId)
+                ){
                     found = true;
+                    result = customer;
                 }
+                bfWriter.write(customer.getStringArray());
+                bfWriter.newLine();
             }
 
             if(!found){
-                System.out.println("Data Mobil Tidak Ditemukan");
+                System.out.println("\n[Notifikasi: Data customer tidak ditemukan]\n");
             }
-
+            System.out.println("Data customer berhasil ditemukan");
             return result;
-        } catch (Exception e){
+
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
-            return new CustomerModel("","", "", 0, "","");
+            return new CustomerModel("","","","");
         }
     }
 

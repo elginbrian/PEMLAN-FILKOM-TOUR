@@ -1,7 +1,6 @@
 package gui.panel_component;
 
 import controller.DataController;
-import model.CarModel;
 import model.CustomerModel;
 import util.SwitchPanel;
 
@@ -34,7 +33,7 @@ public class CustomerModifyPanel extends JPanel {
 
     public class InitPanel extends JPanel {
 
-        private JLabel jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8;
+        private JLabel jLabel1, nameLabel, ageLabel, addressLabel, genderLabel, phoneLabel, jLabel7, jLabel8;
 
         private JButton jButton1, jButton2, saves;
 
@@ -56,7 +55,7 @@ public class CustomerModifyPanel extends JPanel {
                                     address.getText(),
                                     gender.getText()
                             ));
-                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            SwitchPanel.implement(centerPanel, new CustomerPanel());
                             break;
                         case 1:
                             DataController.putCustomer(
@@ -66,11 +65,11 @@ public class CustomerModifyPanel extends JPanel {
                                     address.getText(),
                                     gender.getText()
                             );
-                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            SwitchPanel.implement(centerPanel, new CustomerPanel());
                             break;
                         case 2:
                             DataController.deleteCustomer(name.getText());
-                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            SwitchPanel.implement(centerPanel, new CustomerPanel());
                             break;
                         default:
                             break;
@@ -81,11 +80,11 @@ public class CustomerModifyPanel extends JPanel {
 
         private void initComponents() {
             jLabel1 = new JLabel();
-            jLabel2 = new JLabel();
-            jLabel3 = new JLabel();
-            jLabel4 = new JLabel();
-            jLabel5 = new JLabel();
-            jLabel6 = new JLabel();
+            nameLabel = new JLabel();
+            ageLabel = new JLabel();
+            addressLabel = new JLabel();
+            genderLabel = new JLabel();
+            phoneLabel = new JLabel();
             jLabel7 = new JLabel();
             jLabel8 = new JLabel();
             phoneNum = new JTextField();
@@ -122,20 +121,20 @@ public class CustomerModifyPanel extends JPanel {
             saves.setText("SAVE CHANGES");
             saves.setBorderPainted(false);
 
-            jLabel2.setForeground(new Color(255, 255, 255));
-            jLabel2.setText("Nama");
+            nameLabel.setForeground(new Color(255, 255, 255));
+            nameLabel.setText("Nama");
 
-            jLabel3.setForeground(new Color(255, 255, 255));
-            jLabel3.setText("Umur");
+            ageLabel.setForeground(new Color(255, 255, 255));
+            ageLabel.setText("Umur");
 
-            jLabel4.setForeground(new Color(255, 255, 255));
-            jLabel4.setText("Alamat");
+            addressLabel.setForeground(new Color(255, 255, 255));
+            addressLabel.setText("Alamat");
 
-            jLabel5.setForeground(new Color(255, 255, 255));
-            jLabel5.setText("Gender");
+            genderLabel.setForeground(new Color(255, 255, 255));
+            genderLabel.setText("Gender");
 
-            jLabel6.setForeground(new Color(255, 255, 255));
-            jLabel6.setText("Nomor Telepon");
+            phoneLabel.setForeground(new Color(255, 255, 255));
+            phoneLabel.setText("Nomor Telepon");
 
             jLabel7.setForeground(new Color(255, 255, 255));
             jLabel7.setText("Jabatan");
@@ -166,11 +165,11 @@ public class CustomerModifyPanel extends JPanel {
                                                                     .addComponent(jButton2))
                                                             .addGroup(layout.createSequentialGroup()
                                                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                                            .addComponent(jLabel3)
-                                                                            .addComponent(jLabel2)
-                                                                            .addComponent(jLabel4)
-                                                                            .addComponent(jLabel5)
-                                                                            .addComponent(jLabel6)
+                                                                            .addComponent(ageLabel)
+                                                                            .addComponent(nameLabel)
+                                                                            .addComponent(addressLabel)
+                                                                            .addComponent(genderLabel)
+                                                                            .addComponent(phoneLabel)
                                                                             .addComponent(jLabel7)
                                                                             .addComponent(jLabel8))
                                                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -193,23 +192,23 @@ public class CustomerModifyPanel extends JPanel {
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(phoneNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))
+                                            .addComponent(phoneLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2))
+                                            .addComponent(nameLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(age, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4))
+                                            .addComponent(ageLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(address, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5))
+                                            .addComponent(addressLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(gender, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6))
+                                            .addComponent(genderLabel))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(jTextField6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)

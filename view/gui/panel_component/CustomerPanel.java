@@ -24,7 +24,7 @@ public class CustomerPanel extends JPanel {
         mainLabel.setFont(new Font("Arial", Font.BOLD, 30));
         mainLabel.setBounds(50, 50, 600, 25);
 
-        String[] columnNames = {"ID", "Name", "Address", "PhoneNum", "Gender", "Balance"};
+        String[] columnNames = {"ID", "Name", "Gender", "Address", "Balance", "Age"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         JTable taskTable = new JTable(tableModel);
 

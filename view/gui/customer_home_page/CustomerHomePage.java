@@ -56,7 +56,7 @@ public class CustomerHomePage extends JFrame {
         backgroundPanel.add(mainLabel, gbc);
         centerPanel.add(backgroundPanel, BorderLayout.CENTER);
 
-        customerSidePanel = new CustomerSidePanel(centerPanel);
+        customerSidePanel = new CustomerSidePanel(centerPanel, user);
         CustomerTopPanel employeeTopPanel = new CustomerTopPanel(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

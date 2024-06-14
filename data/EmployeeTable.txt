@@ -9,3 +9,4 @@
 [d5cc70a7-b8ee-408b-9579-65baa3dae449, carol_davis89, 876 Cedar Rd Newburg USA, carol.davis@example.com, +1213546879, Female, Junior, 9100000.0]
 [d5cc70a7-b8ee-408b-9579-65baa3dae449, bob_smith54, 432 Willow Ave Riverside USA, bob.smith@example.com, +1987654321, Male, Junior, 8600000.0]
 [d5cc70a7-b8ee-408b-9579-65baa3dae449, dave_jones67, 789 Birchwood Dr Bayview USA, dave.jones@example.com, +1765432987, Male, Junior, 8900000.0]
+[e6810ef5-7196-4dd0-9c12-167c2d4a478e, budi123, Dahlia Street, budi@gmail.com, 0123456789, Male, Junior, 9000000.0]
