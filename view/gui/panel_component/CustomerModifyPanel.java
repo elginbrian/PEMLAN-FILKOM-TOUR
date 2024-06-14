@@ -1,22 +1,31 @@
 package gui.panel_component;
 
+import controller.DataController;
+import model.CarModel;
+import model.CustomerModel;
+import util.SwitchPanel;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CustomerModifyPanel extends JPanel {
 
     private InitPanel initPanel;
     private RightPanel rightPanel;
+    private int state = 0;
+    private JTextField phoneNum, name, age, address, gender, jTextField6, jTextField7;
 
-    public CustomerModifyPanel() {
-        initComponents();
+    public CustomerModifyPanel(JPanel centerPanel) {
+        initComponents(centerPanel);
     }
 
-    private void initComponents() {
+    private void initComponents(JPanel centerPanel) {
         setBackground(new Color(30, 29, 29));
         setLayout(new BorderLayout());
 
-        initPanel = new InitPanel();
+        initPanel = new InitPanel(centerPanel);
         add(initPanel, BorderLayout.CENTER);
 
         rightPanel = new RightPanel();
@@ -26,12 +35,48 @@ public class CustomerModifyPanel extends JPanel {
     public class InitPanel extends JPanel {
 
         private JLabel jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8;
-        private JTextField jTextField1, jTextField2, jTextField3, jTextField4, jTextField5, jTextField6, jTextField7;
-        private JButton jButton1, jButton2, jButton3;
 
-        public InitPanel() {
+        private JButton jButton1, jButton2, saves;
+
+        public InitPanel(JPanel centerPanel) {
+
             setBackground(new Color(30, 29, 29));
             initComponents();
+
+            saves.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    switch(state){
+                        case 0:
+                            DataController.postCustomer(new CustomerModel(
+                                    "",
+                                    phoneNum.getText(),
+                                    name.getText(),
+                                    Integer.valueOf(age.getText()),
+                                    address.getText(),
+                                    gender.getText()
+                            ));
+                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            break;
+                        case 1:
+                            DataController.putCustomer(
+                                    "",
+                                    name.getText(),
+                                    phoneNum.getText(),
+                                    address.getText(),
+                                    gender.getText()
+                            );
+                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            break;
+                        case 2:
+                            DataController.deleteCustomer(name.getText());
+                            SwitchPanel.implement(centerPanel, new VehiclePanel());
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
         }
 
         private void initComponents() {
@@ -43,18 +88,18 @@ public class CustomerModifyPanel extends JPanel {
             jLabel6 = new JLabel();
             jLabel7 = new JLabel();
             jLabel8 = new JLabel();
-            jTextField1 = new JTextField();
-            jTextField2 = new JTextField();
-            jTextField3 = new JTextField();
-            jTextField4 = new JTextField();
-            jTextField5 = new JTextField();
+            phoneNum = new JTextField();
+            name = new JTextField();
+            age = new JTextField();
+            address = new JTextField();
+            gender = new JTextField();
             jTextField6 = new JTextField();
             jTextField6.setVisible(false);
             jTextField7 = new JTextField();
             jTextField7.setVisible(false);
             jButton1 = new JButton();
             jButton2 = new JButton();
-            jButton3 = new JButton();
+            saves = new JButton();
 
             jLabel1.setFont(new Font("Segoe UI", Font.PLAIN, 36));
             jLabel1.setForeground(new Color(233, 230, 230));
@@ -72,10 +117,10 @@ public class CustomerModifyPanel extends JPanel {
             jButton2.setBorderPainted(false);
             jButton2.setVisible(false);
 
-            jButton3.setBackground(new Color(97, 0, 141));
-            jButton3.setForeground(new Color(255, 255, 255));
-            jButton3.setText("SAVE CHANGES");
-            jButton3.setBorderPainted(false);
+            saves.setBackground(new Color(97, 0, 141));
+            saves.setForeground(new Color(255, 255, 255));
+            saves.setText("SAVE CHANGES");
+            saves.setBorderPainted(false);
 
             jLabel2.setForeground(new Color(255, 255, 255));
             jLabel2.setText("Nama");
@@ -114,7 +159,7 @@ public class CustomerModifyPanel extends JPanel {
                                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                                             .addGroup(layout.createSequentialGroup()
                                                                     .addGap(0, 0, Short.MAX_VALUE)
-                                                                    .addComponent(jButton3)
+                                                                    .addComponent(saves)
                                                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                                     .addComponent(jButton1)
                                                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -130,11 +175,11 @@ public class CustomerModifyPanel extends JPanel {
                                                                             .addComponent(jLabel8))
                                                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                            .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-                                                                            .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-                                                                            .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-                                                                            .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-                                                                            .addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                                            .addComponent(phoneNum, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                                            .addComponent(name, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                                            .addComponent(age, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                                            .addComponent(address, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                                            .addComponent(gender, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
                                                                             .addComponent(jTextField6, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
                                                                             .addComponent(jTextField7, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
                                                                     .addGap(0, 0, Short.MAX_VALUE)))
@@ -147,23 +192,23 @@ public class CustomerModifyPanel extends JPanel {
                                     .addComponent(jLabel1)
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(phoneNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel3))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel2))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(age, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel4))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(address, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel5))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(gender, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel6))
                                     .addGap(46, 46, 46)
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -177,7 +222,7 @@ public class CustomerModifyPanel extends JPanel {
                                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(jButton2)
                                             .addComponent(jButton1)
-                                            .addComponent(jButton3))
+                                            .addComponent(saves))
                                     .addGap(126, 126, 126))
             );
         }
@@ -185,18 +230,42 @@ public class CustomerModifyPanel extends JPanel {
 
     class RightPanel extends JPanel {
         private Dimension buttonSize = new Dimension(200, 40);
+        JButton createButton = createButton("CREATE", new Color(43, 42, 42));
+        JButton updateButton = createButton("UPDATE", new Color(43, 42, 42));
+        JButton deleteButton = createButton("DELETE", new Color(43, 42, 42));
 
         RightPanel() {
+            updateState();
             setBackground(new Color(0x121212));
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-            JButton createButton = createButton("CREATE", new Color(43, 42, 42));
-            JButton updateButton = createButton("UPDATE", new Color(43, 42, 42));
-            JButton deleteButton = createButton("DELETE", new Color(43, 42, 42));
 
             add(createButton);
             add(updateButton);
             add(deleteButton);
+
+            createButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    state = 0;
+                    updateState();
+                }
+            });
+
+            updateButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    state = 1;
+                    updateState();
+                }
+            });
+
+            deleteButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    state = 2;
+                    updateState();
+                }
+            });
         }
 
         private JButton createButton(String text, Color backgroundColor) {
@@ -209,6 +278,40 @@ public class CustomerModifyPanel extends JPanel {
             button.setMinimumSize(buttonSize);
             button.setMaximumSize(buttonSize);
             return button;
+        }
+
+        private void updateState(){
+            switch(state){
+                case 0:
+                    createButton.setBackground(new Color(82, 58, 214));
+                    updateButton.setBackground(new Color(43, 42, 42));
+                    deleteButton.setBackground(new Color(43, 42, 42));
+                    phoneNum.setBackground(new Color(255, 255, 255));
+                    age.setBackground(new Color(255, 255, 255));
+                    address.setBackground(new Color(255, 255, 255));
+                    gender.setBackground(new Color(255, 255, 255));
+                    break;
+                case 1:
+                    createButton.setBackground(new Color(43, 42, 42));
+                    updateButton.setBackground(new Color(82, 58, 214));
+                    deleteButton.setBackground(new Color(43, 42, 42));
+                    phoneNum.setBackground(new Color(255, 255, 255));
+                    age.setBackground(new Color(255, 255, 255));
+                    address.setBackground(new Color(255, 255, 255));
+                    gender.setBackground(new Color(255, 255, 255));
+                    break;
+                case 2:
+                    createButton.setBackground(new Color(43, 42, 42));
+                    updateButton.setBackground(new Color(43, 42, 42));
+                    deleteButton.setBackground(new Color(82, 58, 214));
+                    phoneNum.setBackground(new Color(43, 42, 42));
+                    age.setBackground(new Color(43, 42, 42));
+                    address.setBackground(new Color(43, 42, 42));
+                    gender.setBackground(new Color(43, 42, 42));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

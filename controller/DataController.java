@@ -161,7 +161,10 @@ public class DataController extends AppController {
 
         try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(customerRoute, false))) {
             for (CustomerModel customer : list) {
-                if(customer.getCustomerId().equalsIgnoreCase(customerId)){
+                if(
+                        customer.getCustomerId().equalsIgnoreCase(customerId) ||
+                        customer.getUsername().equalsIgnoreCase(name)
+                ){
                     customer.updateCustomerInfo(name, phoneNum, address, gender);
                     found = true;
                 }
@@ -184,7 +187,10 @@ public class DataController extends AppController {
 
         try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(customerRoute, false))) {
             for (CustomerModel customer : list) {
-                if(customer.getUsername().equalsIgnoreCase(customerId)){
+                if(
+                        customer.getUserID().equalsIgnoreCase(customerId) ||
+                        customer.getUsername().equalsIgnoreCase(customerId)
+                ){
                     found = true;
                     continue;
                 }

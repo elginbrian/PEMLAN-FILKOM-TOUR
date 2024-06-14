@@ -27,7 +27,7 @@ public class EmployeeSidePanel extends JPanel {
     public EmployeeSidePanel(JPanel centerPanel) {
         VehicleModifyPanel vehicleModifyPanel = new VehicleModifyPanel(centerPanel);
         EmployeeModifyPanel employeeModifyPanel = new EmployeeModifyPanel();
-        CustomerModifyPanel customerModifyPanel = new CustomerModifyPanel();
+        CustomerModifyPanel customerModifyPanel = new CustomerModifyPanel(centerPanel);
         setBackground(new Color(0x121212));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
