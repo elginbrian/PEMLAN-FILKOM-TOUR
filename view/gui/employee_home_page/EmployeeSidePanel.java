@@ -22,6 +22,9 @@ public class EmployeeSidePanel extends JPanel {
     private JButton createCustomerButton;
     private JButton showCustomerButton;
     private Dimension buttonSize = new Dimension(240, 40);
+    private VehicleModifyPanel vehicleModifyPanel = new VehicleModifyPanel();
+    private EmployeeModifyPanel employeeModifyPanel = new EmployeeModifyPanel();
+    private CustomerModifyPanel customerModifyPanel = new CustomerModifyPanel();
 
     public EmployeeSidePanel(JPanel centerPanel) {
         setBackground(new Color(0x121212));
@@ -107,6 +110,13 @@ public class EmployeeSidePanel extends JPanel {
             }
         });
 
+        createVehicleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwitchPanel.implement(centerPanel, vehicleModifyPanel);
+            }
+        });
+
         showEmployeeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,10 +124,24 @@ public class EmployeeSidePanel extends JPanel {
             }
         });
 
+        createEmployeeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwitchPanel.implement(centerPanel, employeeModifyPanel);
+            }
+        });
+
         showCustomerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SwitchPanel.implement(centerPanel, new CustomerPanel());
+            }
+        });
+
+        createCustomerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwitchPanel.implement(centerPanel, customerModifyPanel);
             }
         });
     }
