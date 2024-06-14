@@ -1,11 +1,11 @@
 package cli;
 
-import controller.CrudController;
+import controller.DataController;
 import java.util.*;
 import model.CustomerModel;
 
 public class CustomerMenu {
-    public static void DisplayCustomerMenu(String[] args, CrudController crud) {
+    public static void DisplayCustomerMenu(String[] args, DataController crud) {
         Scanner input = new Scanner(System.in);
         boolean continueLoop = true;
         
@@ -14,7 +14,7 @@ public class CustomerMenu {
                 System.out.println("\n=========================================");
                 System.out.println("DATA CUSTOMER");
                 System.out.println("=========================================");
-                crud.displayCustomerList();
+                crud.getCustomerList();
     
                 System.out.println("\nPilih tindakan yang ingin anda lakukan!");
                 System.out.println("1. Create Customer");
@@ -41,13 +41,13 @@ public class CustomerMenu {
                         String gender     = input.nextLine();
     
                         CustomerModel newCustomer = new CustomerModel(customerID, name, phoneNum, age, address, gender);
-                        crud.createCustomer(newCustomer);
+                        crud.postCustomer(newCustomer);
                         break;
     
                     case 2:
                         System.out.print("Masukkan customer id  : ");
                         customerID = input.nextLine();
-                        crud.readCustomer(customerID);
+                        crud.getCustomerById(customerID);
                         break;
     
                     case 3:
@@ -64,7 +64,7 @@ public class CustomerMenu {
                         System.out.print("Masukkan gender       : ");
                         gender     = input.nextLine();
     
-                        crud.updateCustomer(customerID, name, phoneNum, address, gender);
+                        crud.putCustomer(customerID, name, phoneNum, address, gender);
                         break;
     
                     case 4:
@@ -83,7 +83,7 @@ public class CustomerMenu {
             System.out.println("DATA CUSTOMER");
             System.out.println("=========================================");
             System.out.println("Current Customer");
-            crud.readCustomer(crud.currentCustomer.getCustomerId());
+            crud.getCustomerById(crud.currentCustomer.getCustomerId());
 
             System.out.print("Ingin membuat akun baru? (y/n): ");
             String confirm = input.nextLine();
@@ -103,7 +103,7 @@ public class CustomerMenu {
                 String gender     = input.nextLine();
         
                 CustomerModel newCustomer = new CustomerModel(customerID, name, phoneNum, age, address, gender);
-                crud.createCustomer(newCustomer);
+                crud.postCustomer(newCustomer);
             }
         }
     }

@@ -1,11 +1,8 @@
-package controller;
+package model;
 
-import model.CustomerModel;
 import java.util.UUID;
-import model.CarModel;
-import model.EmployeeModel;
 
-public class Transaction {
+public class TransactionModel {
     private String transactionId;
         private CustomerModel customer;
         private EmployeeModel employee;
@@ -14,7 +11,7 @@ public class Transaction {
         private Double price;
         private Boolean isReturned = false;
 
-        public Transaction(CustomerModel customer, EmployeeModel employee, CarModel car, int day){
+        public TransactionModel(CustomerModel customer, EmployeeModel employee, CarModel car, int day){
             this.transactionId = UUID.randomUUID().toString().substring(0,8);
             this.customer = customer;
             this.employee = employee;

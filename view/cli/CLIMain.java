@@ -1,12 +1,12 @@
 package cli;//package view;
 import java.util.*;
-import controller.CrudController;
+import controller.DataController;
 import controller.RentController;
 
 public class CLIMain {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        CrudController crud = new CrudController();
+        DataController crud = new DataController();
         RentController transaction = new RentController();
         boolean continueLoop = true;
 

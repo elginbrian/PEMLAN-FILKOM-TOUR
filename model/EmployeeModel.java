@@ -1,7 +1,7 @@
 package model;
 
-public class EmployeeModel {
-    private String employeeID;
+public class EmployeeModel extends UserModel{
+    private String employeeID = super.getUserID();
     private String name;
     private String address;
     private String eMail;
@@ -11,7 +11,7 @@ public class EmployeeModel {
     private Double salary;
 
     public EmployeeModel(String employeeID, String name, String address, String eMail, String phoneNum, String gender, String position, Double salary){
-        this.employeeID=employeeID;
+        super(name, "employee", "employee");
         this.name=name;
         this.address=address;
         this.eMail=eMail;

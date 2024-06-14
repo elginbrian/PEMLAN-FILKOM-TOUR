@@ -1,7 +1,7 @@
 package model;
 
-public class CustomerModel {
-    private String customerID;
+public class CustomerModel extends UserModel {
+    private String customerID = super.getUserID();
     private String phoneNum;
     private String name;
     private int age;
@@ -10,7 +10,7 @@ public class CustomerModel {
     private Double balance=0.0;
 
     public CustomerModel(String customerID, String phoneNum, String name, int age, String address, String gender){
-        this.customerID=customerID;
+        super(name, "customer", "customer");
         this.phoneNum=phoneNum;
         this.name=name;
         this.age=age;

@@ -9,11 +9,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.List;
 
-public class UserController {
-    private static final String route = "controller/UserTable.txt";
+public class AuthController extends AppController {
 
     public static String PostUser(UserModel user) {
-        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(route, true))){
+        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(authRoute, true))){
             if(user.getUsername().equals("") || user.getPassword().equals("")){
                 return "Lengkapi semua data!";
             }
@@ -39,7 +38,7 @@ public class UserController {
                 return "Password minimal 6 karakter";
             }
 
-            BufferedReader bfReader = new BufferedReader(new FileReader(route));
+            BufferedReader bfReader = new BufferedReader(new FileReader(authRoute));
             String line;
             String result = "Username atau Password Salah";
 
@@ -60,7 +59,7 @@ public class UserController {
 
     public static List<String> GetUsers(List<String> list){
         try {
-            BufferedReader bfReader = new BufferedReader(new FileReader(route));
+            BufferedReader bfReader = new BufferedReader(new FileReader(authRoute));
             String line;
 
             while((line = bfReader.readLine()) != null){
@@ -75,7 +74,7 @@ public class UserController {
 
     public static String GetUserByID(String id){
         try {
-            BufferedReader bfReader = new BufferedReader(new FileReader(route));
+            BufferedReader bfReader = new BufferedReader(new FileReader(authRoute));
             String line;
             String result = "";
 

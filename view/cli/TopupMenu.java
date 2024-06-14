@@ -1,16 +1,16 @@
 package cli;
 
-import controller.CrudController;
+import controller.DataController;
 import java.util.*;
 
 public class TopupMenu {
-    public static void DisplayTopupMenu(String[] args, CrudController crud){
+    public static void DisplayTopupMenu(String[] args, DataController crud){
         Scanner input = new Scanner(System.in);
         System.out.println("\n=========================================");
         System.out.println("MENU TOP-UP");
         System.out.println("=========================================");
         System.out.println("Customer saat ini: ");
-        crud.readCustomer(crud.currentCustomer.getCustomerId());
+        crud.getCustomerById(crud.currentCustomer.getCustomerId());
         
         if(crud.currentCustomer.getCustomerId() == "N/A"){
             System.out.println("[Notifikasi: Silahkan membuat akun customer terlebih dahulu]");

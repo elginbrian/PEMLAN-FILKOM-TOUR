@@ -1,11 +1,11 @@
 package cli;
 
 import java.util.*;
-import controller.CrudController;
+import controller.DataController;
 import model.EmployeeModel;
 
 public class EmployeeMenu {
-    public static void DisplayEmployeeMenu(String[] args, CrudController crud) {
+    public static void DisplayEmployeeMenu(String[] args, DataController crud) {
         Scanner input = new Scanner(System.in);
         boolean continueLoop = true;
 
@@ -13,7 +13,7 @@ public class EmployeeMenu {
             System.out.println("\n=========================================");
             System.out.println("DATA KARYAWAN");
             System.out.println("=========================================");
-            crud.displayEmployeeList();
+            crud.getEmployeeList();
 
             System.out.println("\nPilih tindakan yang ingin anda lakukan!");
             System.out.println("1. Create Employee");

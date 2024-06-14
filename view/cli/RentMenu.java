@@ -1,6 +1,6 @@
 package cli;
 
-import controller.CrudController;
+import controller.DataController;
 import controller.RentController;
 import model.CarModel;
 import model.EmployeeModel;
@@ -8,7 +8,7 @@ import model.EmployeeModel;
 import java.util.*;
 
 public class RentMenu {
-    public static void DisplayRentMenu(String[] args, RentController transaction, CrudController crud) {
+    public static void DisplayRentMenu(String[] args, RentController transaction, DataController crud) {
         if(crud.userState == "customer"){
             Scanner input = new Scanner(System.in);
             System.out.println("\n=========================================");
@@ -28,18 +28,18 @@ public class RentMenu {
                 if(choice == 1){
                     System.out.println("\nMobil yang tersedia: ");
                     System.out.println("------------------------------------------");
-                    transaction.displayCarList();
+                    transaction.getCarList();
                     
                     
                     System.out.print("\nMasukkan plat nomor mobil yang ingin anda \nsewa: ");
                     String numPlate = input.nextLine();
                     
-                    CarModel selectedCar = crud.readCar(numPlate);
+                    CarModel selectedCar = crud.getCarByNumplate(numPlate);
             
                     EmployeeModel employeeNull = new EmployeeModel("N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", 0.0);
                     System.out.println("Sopir yang tersedia: ");
                     System.out.println("------------------------------------------");
-                    transaction.displayEmployeeList();
+                    transaction.getEmployeeList();
             
                     System.out.print("*Jika ingin tanpa supir tuliskan 'N/A'");
                     System.out.print("\nMasukkan ID sopir yang ingin anda sewa: ");

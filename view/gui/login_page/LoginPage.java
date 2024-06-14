@@ -1,6 +1,8 @@
 package gui.login_page;
 
-import controller.UserController;
+import controller.AppController;
+import controller.AuthController;
+import controller.DataController;
 import gui.customer_home_page.CustomerHomePage;
 import gui.employee_home_page.EmployeeHomePage;
 import gui.register_page.RegisterPage;
@@ -103,7 +105,7 @@ public class LoginPage extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String result = UserController.LoginUser(
+                String result = AuthController.LoginUser(
                         userTextField.getText(),
                         passwordField.getText()
                 );
@@ -112,9 +114,11 @@ public class LoginPage extends JFrame {
                 String[] arr   = StringToArray.convert(result);
                 UserModel user = new UserModel(arr[0], arr[1], arr[2], arr[3]);
                 if(arr[3].equals("customer")){
+                    AppController.userState = "customer";
                     CustomerHomePage.run(user);
                     setVisible(false);
                 } else if(arr[3].equals("employee")){
+                    AppController.userState = "employee";
                     EmployeeHomePage.run(user);
                     setVisible(false);
                 }

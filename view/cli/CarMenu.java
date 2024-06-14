@@ -1,12 +1,12 @@
 package cli;
 
-import controller.CrudController;
+import controller.DataController;
 import model.CarModel;
 
 import java.util.*;
 
 public class CarMenu {
-    public static void DisplayCarMenu(String[] args, CrudController crud) {
+    public static void DisplayCarMenu(String[] args, DataController crud) {
         Scanner input = new Scanner(System.in);
         boolean continueLoop = true;
 
@@ -15,7 +15,7 @@ public class CarMenu {
                 System.out.println("\n=========================================");
                 System.out.println("DATA MOBIL");
                 System.out.println("==========================================");
-                crud.displayCarList();
+                crud.getCarList();
     
                 System.out.println("\nPilih tindakan yang ingin anda lakukan!");
                 System.out.println("1. Create Mobil");
@@ -41,13 +41,13 @@ public class CarMenu {
                         double tankCapacity = input.nextDouble();
     
                         CarModel newCar     = new CarModel(numPlate, carBrand, carColor, year, tankCapacity);
-                        crud.createCar(newCar);
+                        crud.postCar(newCar);
                         break;
                     case 2:
                         System.out.print("Masukkan plat nomor : ");
                         numPlate     = input.nextLine(); 
     
-                        crud.readCar(numPlate);
+                        crud.getCarByNumplate(numPlate);
                         break;
                     case 3:
                         System.out.print("Masukkan plat nomor : ");
@@ -61,7 +61,7 @@ public class CarMenu {
                         System.out.print("Masukkan kapasitas  : ");
                         tankCapacity = input.nextDouble();
     
-                        crud.updateCar(numPlate, carBrand, carColor, year, tankCapacity);
+                        crud.putCar(numPlate, carBrand, carColor, year, tankCapacity);
                         break;
                     case 4:
                         System.out.print("Masukkan plat nomor : ");
@@ -79,7 +79,7 @@ public class CarMenu {
             System.out.println("\n=========================================");
             System.out.println("DATA MOBIL");
             System.out.println("==========================================");
-            crud.displayCarList();
+            crud.getCarList();
         }
     }
 }

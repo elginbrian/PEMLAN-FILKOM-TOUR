@@ -1,6 +1,6 @@
 package gui.register_page;
 
-import controller.UserController;
+import controller.AuthController;
 import gui.login_page.LoginPage;
 import model.UserModel;
 
@@ -109,7 +109,7 @@ public class RegisterPage extends JFrame {
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String result = UserController.PostUser(new UserModel(
+                String result = AuthController.PostUser(new UserModel(
                         userTextField.getText(),
                         passwordField.getText(),
                         typeBox.getItemAt(typeBox.getSelectedIndex())
