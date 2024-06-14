@@ -1,10 +1,16 @@
 package gui.panel_component;
 
+import controller.AppController;
+import model.CustomerModel;
+import model.EmployeeModel;
+import util.StringToArray;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class EmployeePanel extends JPanel {
     private boolean expand = false;
@@ -21,6 +27,8 @@ public class EmployeePanel extends JPanel {
         String[] columnNames = {"ID", "Name", "Address", "Email", "PhoneNum", "Gender", "Position", "Salary"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         JTable taskTable = new JTable(tableModel);
+
+        loadData(AppController.getEmployeeList(), tableModel);
 
         JScrollPane scrollPane = new JScrollPane(taskTable);
         scrollPane.setBounds(50, 100, 650, 560);
@@ -65,5 +73,23 @@ public class EmployeePanel extends JPanel {
                 }
             }
         });
+    }
+
+    private void loadData(List<EmployeeModel> employeeList, DefaultTableModel tableModel) {
+        tableModel.setRowCount(0);
+        for (EmployeeModel employeeModel: employeeList) {
+            String[] arr = StringToArray.convert(employeeModel.getStringArray());
+            Object[] rowData = {
+                    arr[0],
+                    arr[1],
+                    arr[2],
+                    arr[3],
+                    arr[4],
+                    arr[5],
+                    arr[6],
+                    arr[7]
+            };
+            tableModel.addRow(rowData);
+        }
     }
 }

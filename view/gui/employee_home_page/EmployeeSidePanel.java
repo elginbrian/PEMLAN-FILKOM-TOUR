@@ -22,11 +22,12 @@ public class EmployeeSidePanel extends JPanel {
     private JButton createCustomerButton;
     private JButton showCustomerButton;
     private Dimension buttonSize = new Dimension(240, 40);
-    private VehicleModifyPanel vehicleModifyPanel = new VehicleModifyPanel();
-    private EmployeeModifyPanel employeeModifyPanel = new EmployeeModifyPanel();
-    private CustomerModifyPanel customerModifyPanel = new CustomerModifyPanel();
+
 
     public EmployeeSidePanel(JPanel centerPanel) {
+        VehicleModifyPanel vehicleModifyPanel = new VehicleModifyPanel(centerPanel);
+        EmployeeModifyPanel employeeModifyPanel = new EmployeeModifyPanel();
+        CustomerModifyPanel customerModifyPanel = new CustomerModifyPanel();
         setBackground(new Color(0x121212));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -112,9 +113,7 @@ public class EmployeeSidePanel extends JPanel {
 
         createVehicleButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                SwitchPanel.implement(centerPanel, vehicleModifyPanel);
-            }
+            public void actionPerformed(ActionEvent e) { SwitchPanel.implement(centerPanel, vehicleModifyPanel); }
         });
 
         showEmployeeButton.addActionListener(new ActionListener() {

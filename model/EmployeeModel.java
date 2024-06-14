@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class EmployeeModel extends UserModel{
     private String employeeID = super.getUserID();
     private String name = super.getUsername();
@@ -23,6 +25,14 @@ public class EmployeeModel extends UserModel{
 
     public EmployeeModel(String userID, String username, String password, String type){
         super(userID, username, password, type);
+    }
+
+    @Override
+    public String getStringArray(){
+        String[] arr = {employeeID, name, address, eMail, phoneNum, gender, position, salary.toString()};
+        String stringArr = Arrays.toString(arr);
+
+        return stringArr;
     }
 
     public void updateEmployeeInfo(String name, String address, String eMail, String phoneNum, String gender, String position, Double salary){

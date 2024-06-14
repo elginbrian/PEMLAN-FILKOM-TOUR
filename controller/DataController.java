@@ -13,18 +13,13 @@ import java.util.List;
 public class DataController extends AppController {
 
     public static String postCar(CarModel newCar){
-        if(userState.equals("employee")){
-            try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(vehicleRoute, true))){
-                bfWriter.write(newCar.getStringArray());
-                bfWriter.newLine();
-                System.out.println("\n[Notifikasi: Mobil baru berhasil dibuat]\n");
-                return "Insert data success";
-            } catch (Exception e){
-                return e.getLocalizedMessage();
-            }
-        } else {
-            System.out.println("\n[Notifikasi: Mobil baru gagal dibuat]\n");
-            return "Mobil baru gagal dibuat";
+        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(vehicleRoute, true))){
+            bfWriter.write(newCar.getStringArray());
+            bfWriter.newLine();
+            System.out.println("\n[Notifikasi: Mobil baru berhasil dibuat]\n");
+            return "Insert data success";
+        } catch (Exception e){
+            return e.getLocalizedMessage();
         }
     }
 
@@ -69,51 +64,42 @@ public class DataController extends AppController {
         int year,
         Double tankCapacity
     ){
-        if(userState.equals("employee")){
-            boolean found = false;
+        boolean found = false;
+        List<CarModel> list = getCarList();
 
-            List<CarModel> list = getCarList();
-
-            try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(vehicleRoute, false))) {
-                for (CarModel car : list) {
-                    if(car.getNumPlate().equalsIgnoreCase(numPlate)){
-                        car.updateCarInfo(numPlate, carBrand, carColor, year, tankCapacity);
-                        found = true;
-                    }
-                    bfWriter.write(car.getStringArray());
-                    bfWriter.newLine();
+        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(vehicleRoute, false))) {
+            for (CarModel car : list) {
+                if(car.getNumPlate().equalsIgnoreCase(numPlate)){
+                    car.updateCarInfo(numPlate, carBrand, carColor, year, tankCapacity);
+                    found = true;
                 }
-
-                if(!found){
-                    System.out.println("\n[Notifikasi: Data mobil tidak ditemukan]\n");
-                }
-                return "Data berhasil diupdate";
-            } catch (Exception e) {
-                return e.getLocalizedMessage();
+                bfWriter.write(car.getStringArray());
+                bfWriter.newLine();
             }
-        } else {
-            return "Anda bukan employee";
+
+            if(!found){
+                System.out.println("\n[Notifikasi: Data mobil tidak ditemukan]\n");
+            }
+            return "Data berhasil diupdate";
+        } catch (Exception e) {
+            return e.getLocalizedMessage();
         }
     }
 
     public static String deleteCar(String numPlate) {
-        if (userState.equals("employee")) {
-            List<CarModel> list = getCarList();
+        List<CarModel> list = getCarList();
 
-            try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(vehicleRoute, false))) {
-                for (CarModel car : list) {
-                    if(car.getNumPlate().equalsIgnoreCase(numPlate)){
-                        continue;
-                    }
-                    bfWriter.write(car.getStringArray());
-                    bfWriter.newLine();
+        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(vehicleRoute, false))) {
+            for (CarModel car : list) {
+                if(car.getNumPlate().equalsIgnoreCase(numPlate)){
+                    continue;
                 }
-                return "Data berhasil dihapus";
-            } catch (Exception e) {
-                return e.getLocalizedMessage();
+                bfWriter.write(car.getStringArray());
+                bfWriter.newLine();
             }
-        } else {
-            return "Anda bukan employee";
+            return "Data berhasil dihapus";
+        } catch (Exception e) {
+            return e.getLocalizedMessage();
         }
     }
 
@@ -217,18 +203,13 @@ public class DataController extends AppController {
     
 
     public static String postEmployee(EmployeeModel newEmployee){
-        if(userState.equals("employee")){
-            try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(employeeRoute, true))){
-                bfWriter.write(newEmployee.getStringArray());
-                bfWriter.newLine();
-                System.out.println("\n[Notifikasi: Employee baru berhasil dibuat]\n");
-                return "Insert data success";
-            } catch (Exception e){
-                return e.getLocalizedMessage();
-            }
-        } else {
-            System.out.println("\n[Notifikasi: Employee baru gagal dibuat]\n");
-            return "Employee baru gagal dibuat";
+        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(employeeRoute, true))){
+            bfWriter.write(newEmployee.getStringArray());
+            bfWriter.newLine();
+            System.out.println("\n[Notifikasi: Employee baru berhasil dibuat]\n");
+            return "Insert data success";
+        } catch (Exception e){
+            return e.getLocalizedMessage();
         }
     }
 

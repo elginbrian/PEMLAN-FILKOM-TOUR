@@ -1,10 +1,16 @@
 package gui.panel_component;
 
+import controller.AppController;
+import model.CarModel;
+import model.CustomerModel;
+import util.StringToArray;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class CustomerPanel extends JPanel {
     private boolean expand = false;
@@ -21,6 +27,8 @@ public class CustomerPanel extends JPanel {
         String[] columnNames = {"ID", "Name", "Address", "PhoneNum", "Gender", "Balance"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         JTable taskTable = new JTable(tableModel);
+
+        loadData(AppController.getCustomerList(), tableModel);
 
         JScrollPane scrollPane = new JScrollPane(taskTable);
         scrollPane.setBounds(50, 100, 650, 560);
@@ -65,5 +73,21 @@ public class CustomerPanel extends JPanel {
                 }
             }
         });
+    }
+
+    private void loadData(List<CustomerModel> customerList, DefaultTableModel tableModel) {
+        tableModel.setRowCount(0);
+        for (CustomerModel customer : customerList) {
+            String[] arr = StringToArray.convert(customer.getStringArray());
+            Object[] rowData = {
+                    arr[0],
+                    arr[2],
+                    arr[1],
+                    arr[3],
+                    arr[4],
+                    arr[5]
+            };
+            tableModel.addRow(rowData);
+        }
     }
 }
