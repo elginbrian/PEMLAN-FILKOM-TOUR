@@ -5,6 +5,7 @@ import controller.DataController;
 import model.CustomerModel;
 import model.UserModel;
 import util.StringToArray;
+import util.SwitchPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +22,7 @@ public class TopUpPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents(UserModel current, JPanel centerPanel) {
-        CustomerModel customer = DataController.getCustomerById(current.getUsername());
-        AppController.currentCustomer = customer;
+        CustomerModel getCustomer = DataController.getCustomerById(current.getUsername());
         jPanel1 = new javax.swing.JPanel();
         jPanel1.setBackground(new Color(30,29,29));
         jPanel2 = new javax.swing.JPanel();
@@ -144,9 +144,10 @@ public class TopUpPanel extends javax.swing.JPanel {
         jButton5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                customer.topUpBalance(Double.parseDouble(jTextField1.getText().replace("Rp. ","")));
-                DataController.deleteCustomer(customer.getUsername());
-                DataController.postCustomer(customer);
+                getCustomer.topUpBalance(Double.parseDouble(jTextField1.getText().replace("Rp. ", "")));
+                DataController.deleteCustomer(getCustomer.getUsername());
+                DataController.postCustomer(getCustomer);
+                SwitchPanel.implement(centerPanel, new TopUpPanel(current, centerPanel));
             }
         });
 
@@ -154,7 +155,7 @@ public class TopUpPanel extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(97, 0, 141));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Your Balance: " + customer.getBalance());
+        jLabel1.setText("Your Balance: " + getCustomer.getBalance().toString());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

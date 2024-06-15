@@ -44,7 +44,7 @@ public class RentMenu {
                     System.out.print("*Jika ingin tanpa supir tuliskan 'N/A'");
                     System.out.print("\nMasukkan ID sopir yang ingin anda sewa: ");
                     String employeeId = input.nextLine();
-                    EmployeeModel selectedEmployee = crud.readEmployee(employeeId);
+                    EmployeeModel selectedEmployee = crud.getEmployeeById(employeeId);
             
                     System.out.print("Masukkan jumlah hari anda menyewa: ");
                     int day = input.nextInt();
@@ -74,7 +74,7 @@ public class RentMenu {
             System.out.println("\n=========================================");
             System.out.println("DATA TRANSAKSI");
             System.out.println("=========================================");
-            transaction.DisplayTransactionList();
+            transaction.getTransactionList();
         }      
     }
 }

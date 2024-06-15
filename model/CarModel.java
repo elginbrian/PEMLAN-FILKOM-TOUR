@@ -54,35 +54,7 @@ public class CarModel {
         return numPlate;
     }
 
-    private double calculatePrice(String carBrand, int year, double tankCapacity, boolean isDiesel){
-        // Misalnya, kita akan menghitung harga berdasarkan tahun dan kapasitas tangki
-        double basePrice = 1000000; // Harga dasar
-        double yearMultiplier = 0.95; // Pengurang harga setiap tahun
-        double tankCapacityMultiplier = 0.05; // Penambahan harga setiap liter kapasitas tangki
-
-        // Hitung harga dasar berdasarkan merek mobil
-        if (carBrand.equals("Toyota")) {
-            basePrice += 50000;
-        } else if (carBrand.equals("Honda")) {
-           basePrice += 40000;
-        } else {
-            basePrice += 30000;
-        }
-
-        // Hitung harga berdasarkan tahun
-        int currentYear = 2024; // Tahun sekarang 
-        int age = currentYear - year;
-        basePrice *= Math.pow(yearMultiplier, age);
-
-        // Hitung harga berdasarkan kapasitas tangki
-        basePrice += tankCapacity * tankCapacityMultiplier;
-
-        // Jika mobil menggunakan diesel, tambahkan biaya tambahan
-        if (isDiesel) {
-            basePrice += 20000;
-        }
-        return basePrice;
-    }
+    public String getCarBrand() { return carBrand; }
 
     public double getPrice(int day) {
         double dailyRate = 50000; // Tarif harian 

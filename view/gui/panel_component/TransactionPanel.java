@@ -1,10 +1,16 @@
 package gui.panel_component;
 
+import controller.RentController;
+import model.EmployeeModel;
+import model.TransactionModel;
+import util.StringToArray;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class TransactionPanel extends JPanel {
     private JTable taskTable;
@@ -23,6 +29,7 @@ public class TransactionPanel extends JPanel {
         String[] columnNames = {"Id", "Customer", "Employee", "Vehicle", "Day", "Price", "Is Returned"};
         tableModel = new DefaultTableModel(columnNames, 0);
         taskTable = new JTable(tableModel);
+        loadData(RentController.getTransactionList(), tableModel);
 
         JScrollPane scrollPane = new JScrollPane(taskTable);
         scrollPane.setBounds(50, 100, 650, 560);
@@ -67,5 +74,22 @@ public class TransactionPanel extends JPanel {
                 }
             }
         });
+    }
+
+    private void loadData(List<TransactionModel> transactionList, DefaultTableModel tableModel) {
+        tableModel.setRowCount(0);
+        for (TransactionModel transaction: transactionList) {
+            String[] arr = StringToArray.convert(transaction.getStringArray());
+            Object[] rowData = {
+                    arr[0],
+                    arr[1],
+                    arr[2],
+                    arr[3],
+                    arr[4],
+                    arr[5],
+                    arr[6]
+            };
+            tableModel.addRow(rowData);
+        }
     }
 }

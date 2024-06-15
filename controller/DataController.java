@@ -122,7 +122,8 @@ public class DataController extends AppController {
             CustomerModel result = new CustomerModel("","","","");
             for (CustomerModel customer : list) {
                 if(
-                        customer.getCustomerId().equalsIgnoreCase(customerId) || customer.getUsername().equalsIgnoreCase(customerId)
+                        customer.getCustomerId().equalsIgnoreCase(customerId) ||
+                                customer.getUsername().equalsIgnoreCase(customerId)
                 ){
                     found = true;
                     result = customer;
@@ -213,7 +214,7 @@ public class DataController extends AppController {
         }
     }
 
-    public static EmployeeModel readEmployee(String employeeId){
+    public static EmployeeModel getEmployeeById(String employeeId){
         boolean found = false;
         try {
             BufferedReader bfReader = new BufferedReader(new FileReader(employeeRoute));
@@ -262,9 +263,12 @@ public class DataController extends AppController {
         boolean found = false;
         List<EmployeeModel> list = getEmployeeList();
 
-        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(customerRoute, false))) {
+        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(employeeRoute, false))) {
             for (EmployeeModel employee : list) {
-                if(employee.getEmployeeId().equalsIgnoreCase(employeeId)){
+                if(
+                        employee.getEmployeeId().equalsIgnoreCase(employeeId) ||
+                        employee.getUsername().equalsIgnoreCase(employeeId)
+                ){
                     employee.updateEmployeeInfo(name, address, eMail, phoneNum, gender, position, salary);
                     found = true;
                 }
@@ -285,9 +289,12 @@ public class DataController extends AppController {
         boolean found = false;
         List<EmployeeModel> list = getEmployeeList();
 
-        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(customerRoute, false))) {
+        try(BufferedWriter bfWriter = new BufferedWriter(new FileWriter(employeeRoute, false))) {
             for (EmployeeModel employee : list) {
-                if(employee.getEmployeeId().equalsIgnoreCase(employeeId)){
+                if(
+                        employee.getEmployeeId().equalsIgnoreCase(employeeId) ||
+                        employee.getUsername().equalsIgnoreCase(employeeId)
+                ){
                     found = true;
                     continue;
                 }

@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppController {
-    protected static final String vehicleRoute  = "data/VehicleTable.txt";
-    protected static final String customerRoute = "data/CustomerTable.txt";
-    protected static final String employeeRoute = "data/EmployeeTable.txt";
-    protected static final String authRoute     = "data/UserTable.txt";
+    protected static final String vehicleRoute     = "data/VehicleTable.txt";
+    protected static final String customerRoute    = "data/CustomerTable.txt";
+    protected static final String employeeRoute    = "data/EmployeeTable.txt";
+    protected static final String authRoute        = "data/UserTable.txt";
+    protected static final String transactionRoute = "data/TransactionTable.txt";
 
     public static String userState = "customer";
     public static CustomerModel currentCustomer = new CustomerModel("N/A", "N/A", "N/A", 0, "N/A", "N/A");
@@ -87,12 +88,13 @@ public class AppController {
             while((line = bfReader.readLine()) != null){
                 String[] arr = StringToArray.convert(line);
                 result = new CustomerModel(
-                        arr[0],
-                        arr[1],
+                        arr[0], // Id
+                        arr[4], //
                         arr[2],
-                        Integer.valueOf(arr[3]),
-                        arr[4],
-                        arr[5]
+                        Integer.parseInt(arr[6]),
+                        arr[3],
+                        arr[1],
+                        Double.parseDouble(arr[5])
                 );
                 result.displayCustomer();
                 list.add(result);

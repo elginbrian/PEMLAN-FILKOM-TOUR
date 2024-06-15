@@ -1,9 +1,10 @@
 package model;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 public class TransactionModel {
-    private String transactionId;
+        private String transactionId;
         private CustomerModel customer;
         private EmployeeModel employee;
         private CarModel car;
@@ -20,9 +21,27 @@ public class TransactionModel {
             this.price = car.getPrice(day) + employee.getFee(day);
         }
 
+        public TransactionModel(String transactionId, CustomerModel customer, EmployeeModel employee, CarModel car, int day, Double price, Boolean isReturned){
+            this.transactionId = transactionId;
+            this.customer = customer;
+            this.employee = employee;
+            this.car = car;
+            this.day = day;
+            this.price = price;
+            this.isReturned = isReturned;
+        }
+
+        public String getStringArray(){
+            String[] arr = {transactionId, customer.getUsername(), employee.getUsername(), car.getNumPlate(), String.valueOf(day), String.valueOf(price), String.valueOf(isReturned)};
+            String stringArr = Arrays.toString(arr);
+
+            return stringArr;
+        }
+
         public CarModel getCar(){
             return car;
         }
+        public CustomerModel getCustomer() { return this.customer; }
 
         public void setReturnStatus(boolean isReturned){
             this.isReturned = isReturned;

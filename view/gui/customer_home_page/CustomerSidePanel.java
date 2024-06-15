@@ -1,9 +1,11 @@
 package gui.customer_home_page;
 
 
+import controller.DataController;
 import gui.panel_component.EmployeePanel;
 import gui.panel_component.TopUpPanel;
 import gui.panel_component.VehiclePanel;
+import gui.panel_component.historyPanel;
 import model.CustomerModel;
 import model.UserModel;
 import util.SwitchPanel;
@@ -77,6 +79,13 @@ public class CustomerSidePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SwitchPanel.implement(centerPanel, new TopUpPanel(current, centerPanel));
+            }
+        });
+
+        rentVehicleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwitchPanel.implement(centerPanel, new historyPanel(centerPanel));
             }
         });
 

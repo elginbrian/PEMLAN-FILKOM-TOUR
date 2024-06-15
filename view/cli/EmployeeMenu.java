@@ -50,7 +50,7 @@ public class EmployeeMenu {
                 case 2:
                     System.out.println("Masukkan employee id  : ");
                     employeeID = input.nextLine();
-                    crud.readEmployee(employeeID);
+                    crud.getEmployeeById(employeeID);
                     break;
 
                 case 3:

@@ -9,7 +9,7 @@ public class CustomerModel extends UserModel {
     private int age = 0;
     private String address = "Undecided";
     private String gender = "Undecided";
-    private Double balance=0.0;
+    private Double balance = 0.0;
 
     public CustomerModel(String customerID, String phoneNum, String name, int age, String address, String gender){
         super(name, "customer", "customer");
@@ -65,7 +65,7 @@ public class CustomerModel extends UserModel {
     }
     
     public boolean spendBalance(double price){
-        if (price > 0) {
+        if (price >= 0) {
             if (balance >= price) {
                 balance -= price;
                 System.out.println("Spent " + price + ". Remaining balance: " + balance);

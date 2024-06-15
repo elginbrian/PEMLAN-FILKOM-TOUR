@@ -115,6 +115,7 @@ public class LoginPage extends JFrame {
                 UserModel user = new UserModel(arr[0], arr[1], arr[2], arr[3]);
                 if(arr[3].equals("customer")){
                     AppController.userState = "customer";
+                    AppController.currentCustomer = DataController.getCustomerById(userTextField.getText());
                     CustomerHomePage.run(user);
                     setVisible(false);
                 } else if(arr[3].equals("employee")){
