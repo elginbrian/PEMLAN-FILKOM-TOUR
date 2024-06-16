@@ -2,6 +2,11 @@
 
 ![FILKOM-TOUR drawio](https://github.com/elginbrian/PEMLAN-FILKOM-TOUR/assets/132267129/4c16023a-f24c-4606-aef8-761f28e3fbb4)
 
+## Anggota Kelompok
+- Elgin Brian Wahyu Bramadhika (235150701111031)
+- Jundi Muhammad Fauzan (2351507001111028)
+- Hillan Tazidi Tsalits (235150700111027)
+
 ## Struktur Project
 ```
 📦 
